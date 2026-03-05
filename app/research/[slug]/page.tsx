@@ -78,20 +78,46 @@ export default async function ResearchDropPage({ params }: Props) {
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs">UP</div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD Research</p>
-              <p className="text-[10px] text-text-secondary">4 min read • Peer Reviewed</p>
+              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD Music Drop</p>
+              <p className="text-[10px] text-text-secondary">Explore • Listen • Learn</p>
             </div>
           </div>
 
-          <ListenButton track={{
-            id: drop.slug + "-audio",
-            title: drop.title,
-            artist: "Upnaad Sound",
-            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            coverImage: drop.coverImage,
-            spotifyUrl: drop.spotifyUrl,
-            youtubeUrl: drop.youtubeUrl
-          }} />
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+            {drop.podcastUrl && (
+              <ListenButton
+                label="Play Podcast"
+                playingLabel="Playing Podcast..."
+                icon={<Mic2 size={16} className="text-white dark:text-black" />}
+                track={{
+                  id: drop.slug + "-podcast",
+                  title: drop.title + " (Podcast)",
+                  artist: "Upnaad Podcast",
+                  // Using a placeholder audio file for podcast demo
+                  url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                  coverImage: drop.coverImage,
+                  youtubeUrl: drop.podcastUrl,
+                  podcastUrl: drop.podcastUrl
+                }}
+              />
+            )}
+            <ListenButton
+              label="Play Music"
+              playingLabel="Playing Music..."
+              icon={<MusicIcon size={16} className="text-white dark:text-black" />}
+              track={{
+                id: drop.slug + "-audio",
+                title: drop.title,
+                artist: "Upnaad Sound",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                coverImage: drop.coverImage,
+                spotifyUrl: drop.spotifyUrl,
+                youtubeUrl: drop.youtubeUrl,
+                podcastUrl: drop.podcastUrl,
+                lyrics: drop.lyrics
+              }}
+            />
+          </div>
         </div>
         <p className="text-2xl text-text-secondary font-light leading-relaxed italic border-l-2 border-accent/20 pl-8">
           {drop.thesis}

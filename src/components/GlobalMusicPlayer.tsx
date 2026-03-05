@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Music, Repeat, Maximize2, Minimize2, ExternalLink } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Music, Repeat, Maximize2, Minimize2, ExternalLink, Mic2 } from 'lucide-react';
 import { useAudio } from '@/src/context/AudioContext';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
@@ -26,6 +26,7 @@ export default function GlobalMusicPlayer() {
     } = useAudio();
 
     const [progress, setProgress] = useState(0);
+    const [showLyrics, setShowLyrics] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
@@ -103,13 +104,27 @@ export default function GlobalMusicPlayer() {
 
                         <div className="flex-1 flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto w-full gap-12">
                             <motion.div
-                                className="w-full max-w-sm aspect-square relative rounded-2xl overflow-hidden shadow-2xl"
+                                className="w-full max-w-sm aspect-square relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800"
                                 layoutId="album-art"
                             >
+                                <AnimatePresence>
+                                    {showLyrics && currentTrack.lyrics && (
+                                        <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            className="absolute inset-0 p-6 sm:p-8 overflow-y-auto bg-black/80 text-white backdrop-blur-md z-10 scrollbar-hide"
+                                        >
+                                            <p className="whitespace-pre-line text-lg sm:text-xl leading-relaxed sm:leading-loose font-medium mt-4 text-center">
+                                                {currentTrack.lyrics}
+                                            </p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                                 {currentTrack.coverImage ? (
                                     <Image src={currentTrack.coverImage} alt={currentTrack.title} fill className="object-cover" />
                                 ) : (
-                                    <div className="w-full h-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                                    <div className="w-full h-full flex items-center justify-center">
                                         <Music size={64} className="text-gray-300 dark:text-gray-600" />
                                     </div>
                                 )}
@@ -142,7 +157,15 @@ export default function GlobalMusicPlayer() {
                                     </button>
                                 </div>
 
-                                <div className="flex gap-4">
+                                <div className="flex gap-4 flex-wrap justify-center md:justify-start">
+                                    {currentTrack.lyrics && (
+                                        <button
+                                            onClick={() => setShowLyrics(!showLyrics)}
+                                            className={cn("flex items-center gap-2 px-4 py-2 rounded-full border border-border-light dark:border-border-dark transition text-sm", showLyrics ? "bg-accent/10 border-accent text-accent" : "hover:border-accent")}
+                                        >
+                                            <Mic2 size={14} /> {showLyrics ? "Hide Lyrics" : "Show Lyrics"}
+                                        </button>
+                                    )}
                                     {currentTrack.spotifyUrl && (
                                         <a href={currentTrack.spotifyUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full border border-border-light dark:border-border-dark hover:border-accent transition text-sm">
                                             Listen on Spotify <ExternalLink size={14} />

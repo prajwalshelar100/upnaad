@@ -76,7 +76,7 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar flex flex-col justify-between">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar flex flex-col justify-between pb-28">
           <nav className="px-3 py-4 space-y-2">
             {navItems.map((item) => {
               const isActive = pathname === item.href;

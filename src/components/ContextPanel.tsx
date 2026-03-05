@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { 
-  ArrowLeft, 
-  Maximize2, 
+import {
+  ArrowLeft,
+  Maximize2,
   Minimize2,
   ChevronRight,
   ExternalLink,
@@ -27,17 +27,17 @@ function cn(...inputs: ClassValue[]) {
 
 export default function ContextPanel() {
   const router = useRouter();
-  const { 
-    isContextPanelCollapsed, 
-    toggleContextPanel, 
-    isReadingMode, 
-    toggleReadingMode 
+  const {
+    isContextPanelCollapsed,
+    toggleContextPanel,
+    isReadingMode,
+    toggleReadingMode
   } = useTheme();
 
   if (isReadingMode) return null;
 
   return (
-    <aside 
+    <aside
       className={cn(
         "fixed right-0 top-0 h-screen bg-white dark:bg-[#0D0D0D] border-l border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-40",
         isContextPanelCollapsed ? "w-[56px]" : "w-[300px]",
@@ -47,7 +47,7 @@ export default function ContextPanel() {
       <div className="flex flex-col h-full">
         <div className="p-4 flex items-center justify-between border-b border-border-light dark:border-border-dark h-[72px]">
           {!isContextPanelCollapsed && (
-            <button 
+            <button
               onClick={() => router.back()}
               className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-secondary hover:text-accent transition-colors"
               aria-label="Go Back"
@@ -58,7 +58,7 @@ export default function ContextPanel() {
           )}
           <div className="flex items-center gap-1 mx-auto lg:mx-0">
             {!isContextPanelCollapsed && (
-              <button 
+              <button
                 onClick={toggleReadingMode}
                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-text-secondary"
                 title="Reading Mode"
@@ -66,7 +66,7 @@ export default function ContextPanel() {
                 <Maximize2 size={16} />
               </button>
             )}
-            <button 
+            <button
               onClick={toggleContextPanel}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-text-secondary"
               aria-label={isContextPanelCollapsed ? "Expand Panel" : "Collapse Panel"}
@@ -77,7 +77,7 @@ export default function ContextPanel() {
         </div>
 
         {!isContextPanelCollapsed && (
-          <div className="flex-1 overflow-y-auto p-6 space-y-10 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto px-6 pt-6 pb-28 space-y-10 custom-scrollbar">
             <section>
               <div className="flex items-center gap-2 mb-4">
                 <BookOpen size={14} className="text-accent" />
@@ -85,8 +85,8 @@ export default function ContextPanel() {
               </div>
               <div className="space-y-5">
                 {researchDrops.slice(0, 2).map((drop) => (
-                  <Link 
-                    key={drop.slug} 
+                  <Link
+                    key={drop.slug}
                     href={`/research/${drop.slug}`}
                     className="group block"
                   >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -16,9 +16,17 @@ interface MediaEmbedProps {
 export default function MediaEmbed({ type, url }: MediaEmbedProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Fallback timeout to ensure the loading state clears even if onLoad doesn't fire
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [url]);
+
   if (type === 'spotify') {
     return (
-      <div className="w-full min-h-[152px] bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+      <div className="w-full min-h-[152px] bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-border-light dark:border-border-dark relative">
         <iframe
           src={url}
           width="100%"
@@ -30,7 +38,7 @@ export default function MediaEmbed({ type, url }: MediaEmbedProps) {
           className={cn("transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
         ></iframe>
         {!isLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center animate-pulse">
+          <div className="absolute inset-0 flex items-center justify-center animate-pulse bg-gray-50 dark:bg-gray-900 z-10">
             <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
@@ -52,7 +60,7 @@ export default function MediaEmbed({ type, url }: MediaEmbedProps) {
         onLoad={() => setIsLoaded(true)}
       ></iframe>
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900 z-10">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
             <p className="text-xs font-bold uppercase tracking-widest text-text-secondary">Initializing Player</p>

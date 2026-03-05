@@ -25,7 +25,7 @@ export default function Home() {
           </h1>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <p className="text-2xl md:text-4xl text-text-secondary font-light leading-tight max-w-xl">
-              Research in Motion. <br />
+              Music First. <br />
               <span className="text-text-light dark:text-text-dark font-medium">Sound with Substance.</span>
             </p>
             <div className="pb-2">
@@ -44,13 +44,13 @@ export default function Home() {
             href={`/research/${latestDrop.slug}`}
             className="bg-text-light dark:bg-text-dark text-white dark:text-black px-10 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-all shadow-xl shadow-accent/10"
           >
-            Explore Latest Drop <ArrowRight size={20} />
+            Stream Latest Drop <ArrowRight size={20} />
           </Link>
           <Link
-            href="/research"
+            href="/music"
             className="border border-border-light dark:border-border-dark px-10 py-5 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-900 transition-all"
           >
-            Browse Research
+            Browse Music Drops
           </Link>
         </motion.div>
       </section>
@@ -72,7 +72,7 @@ export default function Home() {
           </div>
           <div className="space-y-8">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest Publication</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest Music Drop</span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{latestDrop.title}</h2>
               <p className="text-xl text-text-secondary font-light leading-relaxed">
                 {latestDrop.thesis}
@@ -81,18 +81,18 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               <Link
-                href={`/research/${latestDrop.slug}`}
-                className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
-              >
-                <BookOpen size={20} className="text-accent" />
-                <span className="text-xs font-bold uppercase tracking-widest">Read Study</span>
-              </Link>
-              <Link
                 href="/music"
                 className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
               >
                 <Play size={20} className="text-accent" />
                 <span className="text-xs font-bold uppercase tracking-widest">Listen Music</span>
+              </Link>
+              <Link
+                href={`/research/${latestDrop.slug}`}
+                className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
+              >
+                <BookOpen size={20} className="text-accent" />
+                <span className="text-xs font-bold uppercase tracking-widest">Read Study</span>
               </Link>
               <Link
                 href="/podcast"
@@ -110,7 +110,7 @@ export default function Home() {
       <footer className="pt-20 pb-10 border-t border-border-light dark:border-border-dark flex flex-col md:flex-row justify-between items-center gap-10">
         <div className="space-y-2 text-center md:text-left">
           <p className="font-bold tracking-tighter text-xl">UPNAAD</p>
-          <p className="text-xs text-text-secondary uppercase tracking-[0.2em]">Research in Motion. Sound with Substance.</p>
+          <p className="text-xs text-text-secondary uppercase tracking-[0.2em]">Music First. Sound with Substance.</p>
         </div>
         <div className="flex flex-col items-center md:items-end gap-6">
           <SocialIcons />

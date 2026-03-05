@@ -2,56 +2,67 @@
 
 **Research in Motion. Sound with Substance.**
 
-UPNAAD is a research-driven platform that merges long-form studies, podcasts, and music into a single intellectual publishing ecosystem.
+UPNAAD is a creative exploration platform that translates ideas from culture, science, philosophy, and society into music, essays, and conversations.
 
-Each release on UPNAAD is a **Research Drop** — a structured publication where an original research paper is accompanied by a podcast discussion and a music piece inspired by the themes of the research.
+The project experiments with the relationship between **ideas and sound** — exploring how complex concepts can be interpreted and communicated through artistic media such as music and dialogue.
 
-The goal of the platform is to create a space where ideas do not remain confined to text but evolve into conversation, sound, and interdisciplinary exploration.
-
----
-
-## Core Features
-
-- Long-form research publishing
-- Podcast integration (YouTube)
-- Music integration (Spotify)
-- Clean reading interface inspired by Wikipedia
-- Dark / Light mode
-- Responsive dashboard layout
-- Context navigation for related research
-- Collaboration & suggestion submission
-- SEO optimized multipage architecture
+UPNAAD does not replace academic research. Instead, it acts as a **creative interpretation layer**, where themes inspired by research, observations, and questions about the world are expressed through songs, discussions, and writing.
 
 ---
 
-## Tech Stack
+## Concept
 
-- **Next.js (App Router)**
-- **TypeScript**
-- **Tailwind CSS**
-- **Lucide React Icons**
-- **Responsive media embeds**
-- **SEO metadata & structured data**
+Each UPNAAD release can follow a simple structure:
 
----
+Idea or Question
+↓
+Exploratory Notes or Essay
+↓
+Podcast Conversation
+↓
+Music Interpretation
 
-## Platform Philosophy
-
-UPNAAD aims to create a slower, more thoughtful space on the internet — prioritizing clarity of thought, depth of research, and interdisciplinary expression.
-
-Rather than separating academic work, audio discussions, and music, UPNAAD treats them as different forms of engaging with the same intellectual questions.
+This process allows ideas to move across different forms of expression — from reflection to discussion to sound.
 
 ---
 
-## Roadmap
+## Purpose
 
-Future phases of the platform may include:
+The goal of UPNAAD is to explore how artistic media can help people engage with meaningful ideas in a more accessible and emotional way.
 
-- Research discussion spaces
-- Contributor publishing
-- Topic-based intellectual communities
-- Invite-only collaborative research
-- Audio-first knowledge exploration
+Rather than presenting formal academic research, UPNAAD focuses on **creative interpretations of themes inspired by research and observation**.
+
+---
+
+## Platform Features
+
+* Long-form essays and reflections
+* Research-inspired music releases
+* Podcast discussions
+* Clean reading experience inspired by knowledge platforms
+* Structured exploration of ideas across different domains
+
+---
+
+## Technology
+
+This platform is built using:
+
+* Next.js (App Router)
+* TypeScript
+* Tailwind CSS
+* Lucide React Icons
+* Responsive media embeds
+
+The website is designed to prioritize **clarity, readability, and exploration of ideas**.
+
+---
+
+## Academic Work
+
+Formal academic research, scientific publications, and technical work are conducted and published separately through appropriate academic channels.
+
+UPNAAD serves as a **creative companion project**, focusing on interpretation and communication rather than formal research publication.
 
 ---
 

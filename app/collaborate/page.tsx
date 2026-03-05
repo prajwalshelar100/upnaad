@@ -15,19 +15,19 @@ export default function CollaboratePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
-    
+
     const form = e.currentTarget;
     const data = new FormData(form);
-    
+
     try {
-      const response = await fetch("https://formspree.io/f/placeholder", {
+      const response = await fetch("https://formspree.io/f/mbdzrlww", {
         method: "POST",
         body: data,
         headers: {
           'Accept': 'application/json'
         }
       });
-      
+
       if (response.ok) {
         setStatus("success");
         form.reset();
@@ -49,7 +49,7 @@ export default function CollaboratePage() {
         <p className="text-xl text-text-secondary">
           Thank you for reaching out. Our team will review your proposal and get back to you shortly.
         </p>
-        <button 
+        <button
           onClick={() => setStatus("idle")}
           className="text-accent font-bold hover:underline"
         >
@@ -72,9 +72,9 @@ export default function CollaboratePage() {
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-3">
             <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">Full Name</label>
-            <input 
+            <input
               name="name"
-              type="text" 
+              type="text"
               required
               placeholder="John Doe"
               className="w-full bg-transparent border-b border-border-light dark:border-border-dark py-3 focus:border-accent outline-none transition-all placeholder:text-gray-300 dark:placeholder:text-gray-700"
@@ -82,9 +82,9 @@ export default function CollaboratePage() {
           </div>
           <div className="space-y-3">
             <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">Email Address</label>
-            <input 
+            <input
               name="email"
-              type="email" 
+              type="email"
               required
               placeholder="john@example.com"
               className="w-full bg-transparent border-b border-border-light dark:border-border-dark py-3 focus:border-accent outline-none transition-all placeholder:text-gray-300 dark:placeholder:text-gray-700"
@@ -94,7 +94,7 @@ export default function CollaboratePage() {
 
         <div className="space-y-3">
           <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">Area of Interest</label>
-          <select 
+          <select
             name="interest"
             className="w-full bg-transparent border-b border-border-light dark:border-border-dark py-3 focus:border-accent outline-none transition-all appearance-none cursor-pointer"
           >
@@ -107,7 +107,7 @@ export default function CollaboratePage() {
 
         <div className="space-y-3">
           <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">Your Message</label>
-          <textarea 
+          <textarea
             name="message"
             required
             rows={4}
@@ -120,12 +120,12 @@ export default function CollaboratePage() {
           <p className="text-red-500 text-sm font-medium">Something went wrong. Please try again or email us directly.</p>
         )}
 
-        <button 
+        <button
           type="submit"
           disabled={status === "submitting"}
           className="bg-text-light dark:bg-text-dark text-white dark:text-black px-10 py-5 rounded-full font-bold flex items-center gap-3 hover:opacity-90 transition-all disabled:opacity-50 group"
         >
-          {status === "submitting" ? "Sending..." : "Send Proposal"} 
+          {status === "submitting" ? "Sending..." : "Send Proposal"}
           <Send size={18} className={cn("transition-transform", status !== "submitting" && "group-hover:translate-x-1 group-hover:-translate-y-1")} />
         </button>
       </form>

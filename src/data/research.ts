@@ -6,6 +6,8 @@ export interface ResearchDrop {
   coverImage: string;
   spotifyUrl: string;
   youtubeUrl: string;
+  podcastUrl?: string;
+  lyrics?: string;
   topics: string[];
   date: string;
   references?: {
@@ -38,6 +40,8 @@ By understanding the rhythm of identity, we can better appreciate the profound c
     coverImage: "https://picsum.photos/seed/identity/1200/600",
     spotifyUrl: "https://open.spotify.com/embed/track/4cOdK2wGZWyRJBUNRJVNyp",
     youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    podcastUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    lyrics: "These are the default lyrics...\nMusic is the silence between the notes.\nCan you feel the rhythm?\nThe sound of identity forming.\n\n(Instrumental break)\n\nWe are the echoes of the bass.\nLost in the frequency.\nFound in the resonance.\nUpnaad Sound.",
     topics: ["Psychology", "Identity", "Culture"],
     date: "2024-03-01",
     references: [
@@ -73,6 +77,8 @@ Modern architecture is beginning to incorporate 'acoustic sanctuaries'—spaces 
     coverImage: "https://picsum.photos/seed/urban/1200/600",
     spotifyUrl: "https://open.spotify.com/embed/track/0VjIjW4GlUZvYn2pUvPq9i",
     youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    podcastUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    lyrics: "Concrete jungle, echoes in the night\nSirens wailing under streetlights bright\nThe city has a heartbeat, the city has a soul\nLost in the rhythm, taking its toll.",
     topics: ["Society", "Technology", "Culture"],
     date: "2024-02-15"
   }
