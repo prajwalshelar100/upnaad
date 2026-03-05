@@ -1,20 +1,22 @@
-import { 
-  Instagram, 
-  Twitter, 
-  Youtube, 
-  Music2, 
-  Facebook, 
-  Linkedin 
+import {
+  Instagram,
+  Twitter,
+  Youtube,
+  Music2,
+  Facebook,
+  Linkedin,
+  MessageCircle
 } from 'lucide-react';
 
 export default function SocialIcons() {
   const socials = [
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
-    { icon: Music2, href: 'https://spotify.com', label: 'Spotify' },
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/upnaad/', label: 'Instagram' },
+    // { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: MessageCircle, href: 'https://whatsapp.com/channel/0029VbC3rw6LNSZvrYUgLD40', label: 'Whatsapp' },
+    { icon: Youtube, href: 'https://www.youtube.com/channel/UCSOQzKtkWP3Wues4CA_m3Gw', label: 'YouTube' },
+    { icon: Music2, href: 'https://open.spotify.com/user/31lle7khoqvlaqco6dsujppwadky?si=61326e719cec4eae', label: 'Spotify' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61588349588320', label: 'Facebook' },
+    // { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
   ];
 
   return (

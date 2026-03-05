@@ -26,8 +26,8 @@ export default function ResearchPage() {
   return (
     <div className="space-y-12">
       <PageHeader
-        title="New Releases"
-        description="Deep dives into the intersection of sound, society, and the human experience."
+        title="Behind the Song"
+        description="Explore the deep research, storytelling, and creative process behind every track."
       />
 
       <div className="flex items-center gap-3 overflow-x-auto pb-4 no-scrollbar -mx-1 px-1">
@@ -37,8 +37,8 @@ export default function ResearchPage() {
             key={topic}
             onClick={() => setActiveFilter(topic)}
             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${activeFilter === topic
-                ? "bg-accent text-white"
-                : "bg-gray-100 dark:bg-gray-800 text-text-secondary hover:bg-gray-200 dark:hover:bg-gray-700"
+              ? "bg-accent text-white"
+              : "bg-gray-100 dark:bg-gray-800 text-text-secondary hover:bg-gray-200 dark:hover:bg-gray-700"
               }`}
           >
             {topic}

@@ -6,7 +6,7 @@ import { Home, BookOpen, Mic2, Music, Archive, Users, Info, ExternalLink } from 
 export default function MobileFooter() {
     const navItems = [
         { name: 'Home', href: '/', icon: Home },
-        { name: 'New Releases', href: '/new-releases', icon: BookOpen },
+        { name: 'Behind the Song', href: '/new-releases', icon: BookOpen },
         { name: 'Podcast', href: '/podcast', icon: Mic2 },
         { name: 'Music', href: '/music', icon: Music },
         { name: 'Archive', href: '/archive', icon: Archive },

@@ -13,19 +13,30 @@ export default function Home() {
   return (
     <div className="space-y-32">
       {/* Hero Section */}
-      <section className="max-w-4xl pt-10">
+      <section className="max-w-4xl pt-0 md:pt-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8"
         >
-          <h1 className="text-7xl md:text-[120px] font-bold tracking-tighter leading-[0.85] text-text-light dark:text-text-dark">
-            UPNAAD
-          </h1>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 -mt-6">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Upnaad Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <h1 className="text-6xl md:text-[100px] font-bold tracking-tighter leading-[0.85] text-text-light dark:text-text-dark">
+              UPNAAD
+            </h1>
+          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <p className="text-2xl md:text-4xl text-text-secondary font-light leading-tight max-w-xl">
-              Music First. <br />
+              Meaning in every note. <br />
               <span className="text-text-light dark:text-text-dark font-medium">Sound with Substance.</span>
             </p>
             <div className="pb-2">
@@ -47,10 +58,10 @@ export default function Home() {
             Stream Latest Drop <ArrowRight size={20} />
           </Link>
           <Link
-            href="/music"
+            href="/new-releases"
             className="border border-border-light dark:border-border-dark px-10 py-5 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-900 transition-all"
           >
-            Browse New Releases
+            Explore Behind the Song
           </Link>
         </motion.div>
       </section>
