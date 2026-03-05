@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 import { Mic2, Music as MusicIcon } from 'lucide-react';
-import { researchDrops } from '@/src/data/research';
+import { newReleases } from '@/src/data/new-releases';
 import MediaEmbed from '@/src/components/MediaEmbed';
 import ListenButton from '@/src/components/ListenButton';
 import Script from 'next/script';
@@ -14,7 +14,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const drop = researchDrops.find(d => d.slug === slug);
+  const drop = newReleases.find(d => d.slug === slug);
   if (!drop) return { title: 'Not Found' };
 
   return {
@@ -28,9 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ResearchDropPage({ params }: Props) {
+export default async function NewReleasePage({ params }: Props) {
   const { slug } = await params;
-  const drop = researchDrops.find(d => d.slug === slug);
+  const drop = newReleases.find(d => d.slug === slug);
   if (!drop) notFound();
 
   const jsonLd = {
@@ -78,7 +78,7 @@ export default async function ResearchDropPage({ params }: Props) {
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs">UP</div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD Music Drop</p>
+              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD New Release</p>
               <p className="text-[10px] text-text-secondary">Explore • Listen • Learn</p>
             </div>
           </div>
@@ -185,7 +185,7 @@ export default async function ResearchDropPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  return researchDrops.map((drop) => ({
+  return newReleases.map((drop) => ({
     slug: drop.slug,
   }));
 }

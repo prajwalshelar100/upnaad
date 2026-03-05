@@ -40,8 +40,8 @@ export default function Sidebar() {
 
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Latest Drop', href: '/research/the-rhythm-of-identity', icon: Zap },
-    { name: 'Research', href: '/research', icon: BookOpen },
+    { name: 'Latest Drop', href: '/new-releases/the-rhythm-of-identity', icon: Zap },
+    { name: 'New Releases', href: '/new-releases', icon: BookOpen },
     { name: 'Podcast', href: '/podcast', icon: Mic2 },
     { name: 'Music', href: '/music', icon: Music },
     { name: 'Archive', href: '/archive', icon: Archive },

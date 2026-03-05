@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { researchDrops } from '@/src/data/research';
+import { newReleases } from '@/src/data/new-releases';
 
 export interface AudioTrack {
     id: string;
@@ -37,13 +37,13 @@ const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
     const defaultTrack: AudioTrack = {
-        id: researchDrops[0].slug + "-audio",
+        id: newReleases[0].slug + "-audio",
         title: "The Rhythm of Identity",
         artist: "Upnaad Sound",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        coverImage: researchDrops[0].coverImage,
-        spotifyUrl: researchDrops[0].spotifyUrl,
-        youtubeUrl: researchDrops[0].youtubeUrl,
+        coverImage: newReleases[0].coverImage,
+        spotifyUrl: newReleases[0].spotifyUrl,
+        youtubeUrl: newReleases[0].youtubeUrl,
         lyrics: "These are the default lyrics...\nMusic is the silence between the notes.\nCan you feel the rhythm?\nThe sound of identity forming.\n\n(Instrumental break)\n\nWe are the echoes of the bass.\nLost in the frequency.\nFound in the resonance.\nUpnaad Sound."
     };
 

@@ -14,7 +14,7 @@ import {
   Music as MusicIcon
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
-import { researchDrops } from '@/src/data/research';
+import { newReleases } from '@/src/data/new-releases';
 import { podcastEpisodes } from '@/src/data/podcast';
 import { musicTracks } from '@/src/data/music';
 import Link from 'next/link';
@@ -81,13 +81,13 @@ export default function ContextPanel() {
             <section>
               <div className="flex items-center gap-2 mb-4">
                 <BookOpen size={14} className="text-accent" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Related Research</h3>
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Related New Releases</h3>
               </div>
               <div className="space-y-5">
-                {researchDrops.slice(0, 2).map((drop) => (
+                {newReleases.slice(0, 2).map((drop) => (
                   <Link
                     key={drop.slug}
-                    href={`/research/${drop.slug}`}
+                    href={`/new-releases/${drop.slug}`}
                     className="group block"
                   >
                     <p className="text-sm font-medium leading-snug group-hover:text-accent transition-colors line-clamp-2">
@@ -131,7 +131,7 @@ export default function ContextPanel() {
                   YouTube Channel <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
                 <a href="#" className="flex items-center justify-between text-xs text-text-secondary hover:text-accent transition-colors group">
-                  Research Archive <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                  New Releases Archive <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </div>
             </section>

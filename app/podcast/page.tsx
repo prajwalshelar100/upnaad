@@ -11,7 +11,7 @@ export default function PodcastPage() {
         description="Conversations with researchers, artists, and thinkers exploring the substance of sound."
       />
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         {podcastEpisodes.map(episode => (
           <div key={episode.id} className="group cursor-pointer">
             <div className="relative aspect-video rounded-2xl overflow-hidden mb-4">

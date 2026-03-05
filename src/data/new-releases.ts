@@ -1,4 +1,4 @@
-export interface ResearchDrop {
+export interface NewRelease {
   slug: string;
   title: string;
   thesis: string;
@@ -19,7 +19,7 @@ export interface ResearchDrop {
   }[];
 }
 
-export const researchDrops: ResearchDrop[] = [
+export const newReleases: NewRelease[] = [
   {
     slug: "the-rhythm-of-identity",
     title: "The Rhythm of Identity: How Sound Shapes Self",

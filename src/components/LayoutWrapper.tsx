@@ -65,7 +65,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               </div>
               <nav className="flex flex-col gap-8 text-3xl font-bold tracking-tight">
                 <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                <Link href="/research" onClick={() => setIsMobileMenuOpen(false)}>Research</Link>
+                <Link href="/new-releases" onClick={() => setIsMobileMenuOpen(false)}>Research</Link>
                 <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)}>Podcast</Link>
                 <Link href="/music" onClick={() => setIsMobileMenuOpen(false)}>Music</Link>
                 <Link href="/archive" onClick={() => setIsMobileMenuOpen(false)}>Archive</Link>
@@ -101,7 +101,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           >
             <div className="flex justify-end mb-8 md:mb-12 items-center gap-4">
               <div className="hidden md:flex items-center gap-4">
-                <ReadingModeToggle />
+                <ReadingModeToggle showLabel={true} />
               </div>
             </div>
 

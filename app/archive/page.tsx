@@ -1,23 +1,23 @@
 "use client";
 
 import { useState } from 'react';
-import { researchDrops } from '@/src/data/research';
+import { newReleases } from '@/src/data/new-releases';
 import Link from 'next/link';
 import PageHeader from '@/src/components/PageHeader';
 
 export default function ArchivePage() {
   const [filter, setFilter] = useState("All");
-  const topics = ["All", ...Array.from(new Set(researchDrops.flatMap(d => d.topics)))];
+  const topics = ["All", ...Array.from(new Set(newReleases.flatMap(d => d.topics)))];
 
   const filtered = filter === "All" 
-    ? researchDrops 
-    : researchDrops.filter(d => d.topics.includes(filter));
+    ? newReleases 
+    : newReleases.filter(d => d.topics.includes(filter));
 
   return (
     <div className="space-y-12">
       <PageHeader 
         title="Archive" 
-        description="A chronological record of all UPNAAD research drops."
+        description="A chronological record of all UPNAAD new releases."
       />
 
       <div className="flex gap-2 overflow-x-auto pb-4 custom-scrollbar-hide snap-x">
@@ -40,7 +40,7 @@ export default function ArchivePage() {
         {filtered.map(drop => (
           <Link 
             key={drop.slug} 
-            href={`/research/${drop.slug}`}
+            href={`/new-releases/${drop.slug}`}
             className="py-8 flex flex-col md:flex-row md:items-center justify-between group"
           >
             <div className="space-y-1">
