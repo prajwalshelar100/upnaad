@@ -4,9 +4,12 @@ export interface NewRelease {
   thesis: string;
   content: string;
   coverImage: string;
-  spotifyUrl: string;
-  youtubeUrl: string;
+  spotifyUrl?: string;
+  youtubeUrl?: string;
   podcastUrl?: string;
+  pdfLink?: string;
+  isMusicComingSoon?: boolean;
+  isPodcastComingSoon?: boolean;
   lyrics?: string;
   topics: string[];
   date: string;

@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-import { NewRelease } from '@/src/data/new-releases';
+import { NewRelease } from '@/src/data/releases';
 
 export default function NewReleaseCard({ drop }: { drop: NewRelease }) {
   return (
-    <Link 
-      href={`/new-releases/${drop.slug}`}
+    <Link
+      href={`/releases/${drop.slug}`}
       className="group block bg-white dark:bg-[#111111] border border-border-light dark:border-border-dark rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
     >
       <div className="relative aspect-[16/10] overflow-hidden">

@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
-import { Mic2, Music as MusicIcon } from 'lucide-react';
-import { newReleases } from '@/src/data/new-releases';
+import { Mic2, Music as MusicIcon, Download, Clock } from 'lucide-react';
+import { newReleases } from '@/src/data/releases';
 import MediaEmbed from '@/src/components/MediaEmbed';
 import ListenButton from '@/src/components/ListenButton';
 import Script from 'next/script';
@@ -78,13 +78,30 @@ export default async function NewReleasePage({ params }: Props) {
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs">UP</div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD New Release</p>
+              <p className="text-xs font-bold uppercase tracking-widest">UPNAAD Research</p>
               <p className="text-[10px] text-text-secondary">Explore • Listen • Learn</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4 sm:mt-0">
-            {drop.podcastUrl && (
+            {drop.pdfLink && (
+              <a
+                href={drop.pdfLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-text-light dark:bg-text-dark text-white dark:text-black px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-accent/10"
+              >
+                <Download size={16} />
+                Download PDF
+              </a>
+            )}
+
+            {(drop.isPodcastComingSoon || !drop.podcastUrl) ? (
+              <div className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-text-secondary px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest cursor-not-allowed border border-border-light dark:border-border-dark opacity-80">
+                <Clock size={16} />
+                Podcast Coming Soon
+              </div>
+            ) : (
               <ListenButton
                 label="Play Podcast"
                 playingLabel="Playing Podcast..."
@@ -93,30 +110,37 @@ export default async function NewReleasePage({ params }: Props) {
                   id: drop.slug + "-podcast",
                   title: drop.title + " (Podcast)",
                   artist: "Upnaad Podcast",
-                  // Using a placeholder audio file for podcast demo
-                  url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                  url: drop.podcastUrl,
                   coverImage: drop.coverImage,
                   youtubeUrl: drop.podcastUrl,
                   podcastUrl: drop.podcastUrl
                 }}
               />
             )}
-            <ListenButton
-              label="Play Music"
-              playingLabel="Playing Music..."
-              icon={<MusicIcon size={16} className="text-white dark:text-black" />}
-              track={{
-                id: drop.slug + "-audio",
-                title: drop.title,
-                artist: "Upnaad Sound",
-                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                coverImage: drop.coverImage,
-                spotifyUrl: drop.spotifyUrl,
-                youtubeUrl: drop.youtubeUrl,
-                podcastUrl: drop.podcastUrl,
-                lyrics: drop.lyrics
-              }}
-            />
+
+            {(drop.isMusicComingSoon || !drop.spotifyUrl) ? (
+              <div className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-text-secondary px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest cursor-not-allowed border border-border-light dark:border-border-dark opacity-80">
+                <Clock size={16} />
+                Music Coming Soon
+              </div>
+            ) : (
+              <ListenButton
+                label="Play Music"
+                playingLabel="Playing Music..."
+                icon={<MusicIcon size={16} className="text-white dark:text-black" />}
+                track={{
+                  id: drop.slug + "-audio",
+                  title: drop.title,
+                  artist: "Upnaad Sound",
+                  url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Demo URL or use a real URL from track data if present
+                  coverImage: drop.coverImage,
+                  spotifyUrl: drop.spotifyUrl,
+                  youtubeUrl: drop.youtubeUrl,
+                  podcastUrl: drop.podcastUrl,
+                  lyrics: drop.lyrics
+                }}
+              />
+            )}
           </div>
         </div>
         <p className="text-2xl text-text-secondary font-light leading-relaxed italic border-l-2 border-accent/20 pl-8">
@@ -141,31 +165,35 @@ export default async function NewReleasePage({ params }: Props) {
       </div>
 
       <section className="space-y-24 pt-20 border-t border-border-light dark:border-border-dark">
-        <div className="space-y-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center">
-              <Mic2 size={24} />
+        {(!drop.isPodcastComingSoon && drop.youtubeUrl) && (
+          <div className="space-y-10">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center">
+                <Mic2 size={24} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">The Podcast Discussion</h2>
+                <p className="text-sm text-text-secondary">Deep dive into the research methodology and implications.</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight">The Podcast Discussion</h2>
-              <p className="text-sm text-text-secondary">Deep dive into the research methodology and implications.</p>
-            </div>
+            <MediaEmbed type="youtube" url={drop.youtubeUrl} />
           </div>
-          <MediaEmbed type="youtube" url={drop.youtubeUrl} />
-        </div>
+        )}
 
-        <div className="space-y-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-green-500/10 text-green-500 rounded-2xl flex items-center justify-center">
-              <MusicIcon size={24} />
+        {(!drop.isMusicComingSoon && drop.spotifyUrl) && (
+          <div className="space-y-10">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-green-500/10 text-green-500 rounded-2xl flex items-center justify-center">
+                <MusicIcon size={24} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">The Music Track</h2>
+                <p className="text-sm text-text-secondary">Sonic translation of the rhythmic data points.</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight">The Music Track</h2>
-              <p className="text-sm text-text-secondary">Sonic translation of the rhythmic data points.</p>
-            </div>
+            <MediaEmbed type="spotify" url={drop.spotifyUrl} />
           </div>
-          <MediaEmbed type="spotify" url={drop.spotifyUrl} />
-        </div>
+        )}
 
         <div className="bg-gray-50 dark:bg-[#111111] p-10 md:p-16 rounded-[2rem] border border-border-light dark:border-border-dark relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:bg-accent/10 transition-colors duration-700"></div>

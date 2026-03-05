@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
                 userAgent: '*', // Rules for all bots
                 allow: [
                     '/',
-                    '/new-releases',
+                    '/releases',
                     '/podcast',
                     '/music'
                 ],
@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
             },
             {
                 userAgent: ['GPTBot', 'CCBot'], // Specific rules for AI Scrapers
-                allow: ['/new-releases'],           // You might want AI to see your research...
+                allow: ['/releases'],           // You might want AI to see your research...
                 disallow: ['/'],                // ...but not scrape the whole site architecture
             },
         ],

@@ -6,7 +6,7 @@ import { Home, BookOpen, Mic2, Music, Archive, Users, Info, ExternalLink } from 
 export default function MobileFooter() {
     const navItems = [
         { name: 'Home', href: '/', icon: Home },
-        { name: 'Behind the Song', href: '/new-releases', icon: BookOpen },
+        { name: 'Behind the Song', href: '/releases', icon: BookOpen },
         { name: 'Podcast', href: '/podcast', icon: Mic2 },
         { name: 'Music', href: '/music', icon: Music },
         { name: 'Archive', href: '/archive', icon: Archive },
@@ -43,7 +43,7 @@ export default function MobileFooter() {
                             YouTube Channel <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
                         </a>
                         <a href="#" className="flex items-center justify-between text-sm font-medium text-text-secondary hover:text-accent transition-colors group p-1">
-                            New Releases Archive <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                            Research Archive <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
                         </a>
                     </div>
                 </div>

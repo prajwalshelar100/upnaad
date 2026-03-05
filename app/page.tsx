@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Play, BookOpen, Mic2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { newReleases } from '@/src/data/new-releases';
+import { newReleases } from '@/src/data/releases';
 import SocialIcons from '@/src/components/SocialIcons';
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
           className="flex flex-wrap gap-6 mt-16"
         >
           <Link
-            href={`/new-releases/${latestDrop.slug}`}
+            href={`/releases/${latestDrop.slug}`}
             className="bg-text-light dark:bg-text-dark text-white dark:text-black px-10 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-all shadow-xl shadow-accent/10"
           >
             Stream Latest Drop <ArrowRight size={20} />
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
           <div className="space-y-8">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest New Release</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest Research</span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{latestDrop.title}</h2>
               <p className="text-xl text-text-secondary font-light leading-relaxed">
                 {latestDrop.thesis}
@@ -99,7 +99,7 @@ export default function Home() {
                 <span className="text-xs font-bold uppercase tracking-widest">Listen Music</span>
               </Link>
               <Link
-                href={`/new-releases/${latestDrop.slug}`}
+                href={`/releases/${latestDrop.slug}`}
                 className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
               >
                 <BookOpen size={20} className="text-accent" />

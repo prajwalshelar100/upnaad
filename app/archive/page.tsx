@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { newReleases } from '@/src/data/new-releases';
+import { newReleases } from '@/src/data/releases';
 import Link from 'next/link';
 import PageHeader from '@/src/components/PageHeader';
 
@@ -9,15 +9,15 @@ export default function ArchivePage() {
   const [filter, setFilter] = useState("All");
   const topics = ["All", ...Array.from(new Set(newReleases.flatMap(d => d.topics)))];
 
-  const filtered = filter === "All" 
-    ? newReleases 
+  const filtered = filter === "All"
+    ? newReleases
     : newReleases.filter(d => d.topics.includes(filter));
 
   return (
     <div className="space-y-12">
-      <PageHeader 
-        title="Archive" 
-        description="A chronological record of all UPNAAD new releases."
+      <PageHeader
+        title="Archive"
+        description="A chronological record of all UPNAAD research."
       />
 
       <div className="flex gap-2 overflow-x-auto pb-4 custom-scrollbar-hide snap-x">
@@ -25,11 +25,10 @@ export default function ArchivePage() {
           <button
             key={t}
             onClick={() => setFilter(t)}
-            className={`px-4 py-1 rounded-full text-sm border transition-colors flex-shrink-0 snap-start ${
-              filter === t 
-                ? "bg-text-light text-white border-text-light dark:bg-text-dark dark:text-black" 
-                : "border-border-light dark:border-border-dark text-text-secondary hover:border-accent"
-            }`}
+            className={`px-4 py-1 rounded-full text-sm border transition-colors flex-shrink-0 snap-start ${filter === t
+              ? "bg-text-light text-white border-text-light dark:bg-text-dark dark:text-black"
+              : "border-border-light dark:border-border-dark text-text-secondary hover:border-accent"
+              }`}
           >
             {t}
           </button>
@@ -38,9 +37,9 @@ export default function ArchivePage() {
 
       <div className="divide-y divide-border-light dark:divide-border-dark">
         {filtered.map(drop => (
-          <Link 
-            key={drop.slug} 
-            href={`/new-releases/${drop.slug}`}
+          <Link
+            key={drop.slug}
+            href={`/releases/${drop.slug}`}
             className="py-8 flex flex-col md:flex-row md:items-center justify-between group"
           >
             <div className="space-y-1">

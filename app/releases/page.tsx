@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { newReleases } from '@/src/data/new-releases';
+import { newReleases } from '@/src/data/releases';
 import NewReleaseCard from '@/src/components/NewReleaseCard';
 import PageHeader from '@/src/components/PageHeader';
 import { Filter } from 'lucide-react';

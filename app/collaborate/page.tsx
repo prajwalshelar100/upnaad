@@ -141,9 +141,9 @@ function CollaborateForm() {
           <select
             name="interest"
             className="w-full bg-transparent border-b border-border-light dark:border-border-dark py-3 focus:border-accent outline-none transition-all appearance-none cursor-pointer"
-            defaultValue={referenceTrack ? "Music" : "New Releases"}
+            defaultValue={referenceTrack ? "Music" : "Research"}
           >
-            <option value="New Releases">Suggest Research Topic</option>
+            <option value="Research">Suggest Research Topic</option>
             <option value="Study">Collaborate on Study</option>
             <option value="Music">Music Collaboration</option>
             <option value="Podcast">Podcast Guest Request</option>

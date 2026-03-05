@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Send } from 'lucide-react';
 import SocialIcons from '@/src/components/SocialIcons';
-import { newReleases } from '@/src/data/new-releases';
+import { newReleases } from '@/src/data/releases';
 
 export default function AboutPage() {
   const latestDrop = newReleases[0];
@@ -72,7 +72,7 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Explore Our Latest Drop</h2>
           <Link
-            href={`/new-releases/${latestDrop.slug}`}
+            href={`/releases/${latestDrop.slug}`}
             className="inline-flex text-accent font-bold items-center gap-2 hover:opacity-80 transition-opacity w-fit"
           >
             View Release <ArrowRight size={16} />
@@ -97,7 +97,7 @@ export default function AboutPage() {
               {latestDrop.thesis}
             </p>
             <Link
-              href={`/new-releases/${latestDrop.slug}`}
+              href={`/releases/${latestDrop.slug}`}
               className="inline-flex bg-text-light dark:bg-text-dark text-white dark:text-black px-8 py-4 rounded-full font-bold items-center justify-center gap-3 hover:scale-105 transition-transform w-full sm:w-fit mt-4"
             >
               Stream Now <ArrowRight size={18} />

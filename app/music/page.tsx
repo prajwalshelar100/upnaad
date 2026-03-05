@@ -119,12 +119,12 @@ export default function MusicPage() {
                 )}
               </div>
 
-              {/* Right: Content & Actions (Right-Aligned on Desktop) */}
-              <div className="flex-1 flex flex-col lg:items-end lg:text-right w-full gap-8">
+              {/* Right: Content & Actions */}
+              <div className="flex-1 flex flex-col w-full gap-8">
 
                 {/* Headers and Badges */}
-                <div className="w-full flex flex-col lg:items-end">
-                  <div className="flex flex-wrap lg:justify-end gap-2 mb-4">
+                <div className="w-full flex flex-col">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/5 px-3 py-1.5 rounded-md border border-accent/10">
                       {track.category}
                     </span>
@@ -141,7 +141,7 @@ export default function MusicPage() {
                 </p>
 
                 {/* Primary Actions (Listen) */}
-                <div className="flex flex-wrap lg:justify-end gap-3 w-full border-t border-border-light dark:border-border-dark pt-8">
+                <div className="flex flex-wrap gap-3 w-full border-t border-border-light dark:border-border-dark pt-8">
                   {track.audioUrl && (
                     <ListenButton
                       label="Play the Song"
@@ -183,10 +183,10 @@ export default function MusicPage() {
                 </div>
 
                 {/* Secondary Actions (Research & Collaborate) */}
-                <div className="flex flex-wrap lg:justify-end gap-3 w-full">
+                <div className="flex flex-wrap gap-3 w-full">
                   {track.relatedResearchSlug && (
                     <Link
-                      href={`/new-releases/${track.relatedResearchSlug}`}
+                      href={`/releases/${track.relatedResearchSlug}`}
                       className="inline-flex items-center justify-center gap-2 bg-text-light dark:bg-text-dark text-white dark:text-black px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-accent/10"
                     >
                       <BookOpen size={14} />

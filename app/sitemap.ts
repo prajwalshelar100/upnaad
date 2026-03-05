@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { newReleases } from '@/src/data/new-releases';
+import { newReleases } from '@/src/data/releases';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://upnaad.com';
@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Priority 0.8 = Main category pages
     const staticRoutes: MetadataRoute.Sitemap = [
         { url: '', priority: 1.0, changeFrequency: 'daily' },
-        { url: '/new-releases', priority: 0.9, changeFrequency: 'daily' },
+        { url: '/releases', priority: 0.9, changeFrequency: 'daily' },
         { url: '/podcast', priority: 0.8, changeFrequency: 'weekly' },
         { url: '/music', priority: 0.8, changeFrequency: 'weekly' },
         { url: '/archive', priority: 0.7, changeFrequency: 'monthly' },
@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // This ensures every time you add a new study to your data file, 
     // Google finds it instantly without you updating this file.
     const dynamicResearchRoutes: MetadataRoute.Sitemap = newReleases.map((drop) => ({
-        url: `${baseUrl}/new-releases/${drop.slug}`,
+        url: `${baseUrl}/releases/${drop.slug}`,
         // If your data has a date, use it; otherwise use current date
         lastModified: drop.date ? new Date(drop.date) : new Date(),
         changeFrequency: 'monthly',
