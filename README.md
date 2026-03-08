@@ -69,5 +69,3 @@ UPNAAD serves as a **creative companion project**, focusing on interpretation an
 ## Author
 
 Created by **Prajwal Shelar**.
-
-Change new-releases to releases; and there only have the option to add all the information regarding research of the release also add the download research button to download the pdf format of the research , Correct the allignments of the music page and check for the other ages and analyze the website and everything make it production ready
