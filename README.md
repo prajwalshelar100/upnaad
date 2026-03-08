@@ -6,7 +6,7 @@ UPNAAD is a creative exploration platform that translates ideas from culture, sc
 
 The project experiments with the relationship between **ideas and sound** — exploring how complex concepts can be interpreted and communicated through artistic media such as music and dialogue.
 
-UPNAAD does not replace academic research. Instead, it acts as a **creative interpretation layer**, where themes inspired by research, observations, and questions about the world are expressed through songs, discussions, and writing.
+UPNAAD acts as a **creative interpretation layer**, where themes inspired by research, observations, and questions about the world are expressed through songs, discussions, and writing.
 
 ---
 
@@ -22,7 +22,7 @@ Podcast Conversation
 ↓
 Music Interpretation
 
-This process allows ideas to move across different forms of expression — from reflection to discussion to sound.
+This process allows ideas to move across different forms of expression - from reflection to discussion to sound.
 
 ---
 
@@ -30,7 +30,7 @@ This process allows ideas to move across different forms of expression — from 
 
 The goal of UPNAAD is to explore how artistic media can help people engage with meaningful ideas in a more accessible and emotional way.
 
-Rather than presenting formal academic research, UPNAAD focuses on **creative interpretations of themes inspired by research and observation**.
+UPNAAD focuses on **creative interpretations of themes inspired by research and observation**.
 
 ---
 
@@ -58,9 +58,6 @@ The website is designed to prioritize **clarity, readability, and exploration of
 
 ---
 
-## Academic Work
-
-Formal academic research, scientific publications, and technical work are conducted and published separately through appropriate academic channels.
 
 UPNAAD serves as a **creative companion project**, focusing on interpretation and communication rather than formal research publication.
 
