@@ -58,11 +58,6 @@ The website is designed to prioritize **clarity, readability, and exploration of
 
 ---
 
-
-UPNAAD serves as a **creative companion project**, focusing on interpretation and communication rather than formal research publication.
-
----
-
 ## Author
 
 Created by **Prajwal Shelar**.
