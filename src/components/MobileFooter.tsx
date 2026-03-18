@@ -15,7 +15,7 @@ export default function MobileFooter() {
     ];
 
     return (
-        <footer className="md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-[#0D0D0D] py-12 px-6 mt-16 w-full">
+        <footer className="md:hidden border-t border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark py-12 px-6 mt-16 w-full">
             <div className="max-w-md mx-auto space-y-10">
                 <div>
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary mb-5">Page Navigation</h3>

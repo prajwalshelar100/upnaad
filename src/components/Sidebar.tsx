@@ -52,7 +52,7 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-screen bg-white dark:bg-[#0D0D0D] border-r border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-50",
+        "fixed left-0 top-0 h-screen bg-background-light dark:bg-background-dark border-r border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-50",
         isSidebarCollapsed ? "w-[72px]" : "w-[260px]",
         "hidden md:block"
       )}

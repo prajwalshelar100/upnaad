@@ -93,7 +93,7 @@ export default function GlobalMusicPlayer() {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: '100%', opacity: 0 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[100] bg-white dark:bg-[#0D0D0D] flex flex-col pt-20 pb-[100px] px-6"
+                        className="fixed inset-0 z-[100] bg-background-light dark:bg-background-dark flex flex-col pt-20 pb-[100px] px-6"
                     >
                         <button
                             onClick={toggleMaximize}
@@ -185,7 +185,7 @@ export default function GlobalMusicPlayer() {
 
             {/* Bottom Bar Player */}
             <div className={cn(
-                "fixed bottom-0 left-0 w-full z-50 bg-white/95 dark:bg-[#0D0D0D]/95 backdrop-blur-xl border-t border-border-light dark:border-border-dark shadow-[0_-4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_20px_rgba(0,0,0,0.2)] transition-transform duration-300",
+                "fixed bottom-0 left-0 w-full z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-border-light dark:border-border-dark shadow-[0_-4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_20px_rgba(0,0,0,0.2)] transition-transform duration-300",
                 isMaximized ? "translate-y-full" : "translate-y-0"
             )}>
                 {/* Progress Bar */}

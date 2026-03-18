@@ -11,6 +11,8 @@ import GlobalMusicPlayer from './GlobalMusicPlayer';
 import MobileFooter from './MobileFooter';
 import Link from 'next/link';
 import Image from 'next/image';
+import CookieBanner from './CookieBanner';
+import WelcomeTutorial from './WelcomeTutorial';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -24,9 +26,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const { isReadingMode, isSidebarCollapsed, isContextPanelCollapsed } = useTheme();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0D0D0D] text-text-light dark:text-text-dark font-sans selection:bg-accent/20 overflow-x-hidden">
+    <div className="min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans selection:bg-accent/20 overflow-x-hidden">
       {/* Mobile Nav */}
-      <nav className="md:hidden fixed top-0 left-0 w-full z-[60] bg-white/90 dark:bg-[#0D0D0D]/90 backdrop-blur-xl border-b border-border-light dark:border-border-dark px-6 py-4 flex items-center justify-between">
+      <nav className="md:hidden fixed top-0 left-0 w-full z-[60] bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-b border-border-light dark:border-border-dark px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logo.png" alt="UPNAAD Logo" width={24} height={24} className="rounded-sm object-cover" />
           <span className="font-bold text-xl tracking-tighter">UPNAAD</span>
@@ -51,7 +53,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[70] bg-white dark:bg-[#0D0D0D] md:hidden"
+            className="fixed inset-0 z-[70] bg-background-light dark:bg-background-dark md:hidden"
           >
             <div className="p-8 flex flex-col h-full">
               <div className="flex justify-between items-center mb-12">
@@ -121,6 +123,8 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       </div>
 
       <GlobalMusicPlayer />
+      <CookieBanner />
+      <WelcomeTutorial />
     </div>
   );
 }

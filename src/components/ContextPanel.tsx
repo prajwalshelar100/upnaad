@@ -14,9 +14,11 @@ import {
   Music as MusicIcon
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
-import { newReleases } from '@/src/data/releases';
-import { podcastEpisodes } from '@/src/data/podcast';
-import { musicTracks } from '@/src/data/music';
+import { useEffect, useState } from 'react';
+import { newReleases as localReleases } from '@/src/data/releases';
+import { podcastEpisodes as localPodcasts } from '@/src/data/podcast';
+import { musicTracks as localMusic } from '@/src/data/music';
+import { client } from '@/src/sanity/lib/client';
 import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -34,12 +36,32 @@ export default function ContextPanel() {
     toggleReadingMode
   } = useTheme();
 
+  const [newReleases, setNewReleases] = useState<any[]>(localReleases);
+  const [podcastEpisodes, setPodcastEpisodes] = useState<any[]>(localPodcasts);
+  const [musicTracks, setMusicTracks] = useState<any[]>(localMusic);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const releases = await client.fetch(`*[_type == "release"] | order(date desc)[0...2]`);
+        const podcasts = await client.fetch(`*[_type == "podcast"] | order(date desc)[0...1]`);
+        const tracks = await client.fetch(`*[_type == "music"] | order(date desc)[0...1]`);
+        if (releases?.length) setNewReleases(releases);
+        if (podcasts?.length) setPodcastEpisodes(podcasts);
+        if (tracks?.length) setMusicTracks(tracks);
+      } catch (err) {
+        console.warn('Sanity fetch failed. Falling back to local data.', err);
+      }
+    }
+    fetchData();
+  }, []);
+
   if (isReadingMode) return null;
 
   return (
     <aside
       className={cn(
-        "fixed right-0 top-0 h-screen bg-white dark:bg-[#0D0D0D] border-l border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-40",
+        "fixed right-0 top-0 h-screen bg-background-light dark:bg-background-dark border-l border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-40",
         isContextPanelCollapsed ? "w-[56px]" : "w-[300px]",
         "hidden lg:flex flex-col"
       )}
