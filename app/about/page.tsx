@@ -1,15 +1,24 @@
-"use client";
-
 import PageHeader from '@/src/components/PageHeader';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Send } from 'lucide-react';
 import SocialIcons from '@/src/components/SocialIcons';
-import { newReleases } from '@/src/data/releases';
+import { client } from '@/src/sanity/lib/client';
+import { latestReleaseQuery } from '@/src/sanity/lib/queries';
+import { urlForImage } from '@/src/sanity/lib/image';
 
-export default function AboutPage() {
-  const latestDrop = newReleases[0];
+export const revalidate = 60; // revalidate every 60 seconds
+
+export default async function AboutPage() {
+  const latestDrop = await client.fetch(latestReleaseQuery);
   const currentYear = new Date().getFullYear();
+
+  const dropTitle = latestDrop?.title || "No release yet";
+  const dropThesis = latestDrop?.thesis || "Check back soon for our latest drops.";
+  const dropSlug = latestDrop?.slug?.current || "coming-soon";
+  const dropCoverSrc = latestDrop?.coverImage 
+    ? urlForImage(latestDrop.coverImage).url() 
+    : (latestDrop?.coverImageUrlFallback || "https://picsum.photos/seed/placeholder/1200/600");
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-20 md:space-y-32">
@@ -72,7 +81,7 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Explore Our Latest Drop</h2>
           <Link
-            href={`/releases/${latestDrop.slug}`}
+            href={`/releases/${dropSlug}`}
             className="inline-flex text-accent font-bold items-center gap-2 hover:opacity-80 transition-opacity w-fit"
           >
             View Release <ArrowRight size={16} />
@@ -82,22 +91,23 @@ export default function AboutPage() {
         <div className="relative group rounded-3xl overflow-hidden bg-gray-50 dark:bg-[#111111] border border-border-light dark:border-border-dark p-6 sm:p-8 md:p-10 flex flex-col md:flex-row gap-8 md:gap-10 items-center">
           <div className="relative w-full max-w-[300px] md:max-w-none md:w-1/2 aspect-square rounded-2xl overflow-hidden shadow-2xl shrink-0 mx-auto">
             <Image
-              src={latestDrop.coverImage}
-              alt={latestDrop.title}
+              src={dropCoverSrc}
+              alt={dropTitle}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               referrerPolicy="no-referrer"
+              crossOrigin="anonymous"
             />
           </div>
 
           <div className="space-y-5 flex-1 w-full text-center md:text-left flex flex-col items-center md:items-start">
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest Release</span>
-            <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">{latestDrop.title}</h3>
+            <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">{dropTitle}</h3>
             <p className="text-base md:text-lg text-text-secondary font-light leading-relaxed">
-              {latestDrop.thesis}
+              {dropThesis}
             </p>
             <Link
-              href={`/releases/${latestDrop.slug}`}
+              href={`/releases/${dropSlug}`}
               className="inline-flex bg-text-light dark:bg-text-dark text-white dark:text-black px-8 py-4 rounded-full font-bold items-center justify-center gap-3 hover:scale-105 transition-transform w-full sm:w-fit mt-4"
             >
               Stream Now <ArrowRight size={18} />

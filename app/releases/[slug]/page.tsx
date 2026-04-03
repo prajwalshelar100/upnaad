@@ -3,19 +3,25 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 import { Mic2, Music as MusicIcon, Download, Clock } from 'lucide-react';
-import { newReleases } from '@/src/data/releases';
 import MediaEmbed from '@/src/components/MediaEmbed';
 import ListenButton from '@/src/components/ListenButton';
 import Script from 'next/script';
+import { client } from '@/src/sanity/lib/client';
+import { allReleasesQuery, releaseBySlugQuery } from '@/src/sanity/lib/queries';
+import { urlForImage } from '@/src/sanity/lib/image';
 
 interface Props {
   params: { slug: string };
 }
 
+export const revalidate = 60; // revalidate every 60 seconds
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const drop = newReleases.find(d => d.slug === slug);
+  const drop = await client.fetch(releaseBySlugQuery, { slug });
   if (!drop) return { title: 'Not Found' };
+
+  const coverSrc = drop.coverImage ? urlForImage(drop.coverImage).url() : (drop.coverImageUrlFallback || "https://picsum.photos/seed/placeholder/1200/600");
 
   return {
     title: `${drop.title} | UPNAAD`,
@@ -23,22 +29,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: drop.title,
       description: drop.thesis,
-      images: [drop.coverImage],
+      images: [coverSrc],
     },
   };
 }
 
 export default async function NewReleasePage({ params }: Props) {
   const { slug } = await params;
-  const drop = newReleases.find(d => d.slug === slug);
+  const drop = await client.fetch(releaseBySlugQuery, { slug });
   if (!drop) notFound();
+
+  const coverSrc = drop.coverImage ? urlForImage(drop.coverImage).url() : (drop.coverImageUrlFallback || "https://picsum.photos/seed/placeholder/1200/600");
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": drop.title,
     "description": drop.thesis,
-    "image": drop.coverImage,
+    "image": coverSrc,
     "datePublished": drop.date,
     "author": {
       "@type": "Organization",
@@ -64,7 +72,7 @@ export default async function NewReleasePage({ params }: Props) {
 
       <header className="mb-16">
         <div className="flex items-center gap-3 mb-8">
-          {drop.topics.map(topic => (
+          {(drop.topics || []).map((topic: string) => (
             <span key={topic} className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent bg-accent/5 px-3 py-1 rounded-full border border-accent/10">
               {topic}
             </span>
@@ -86,7 +94,7 @@ export default async function NewReleasePage({ params }: Props) {
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4 sm:mt-0">
             {drop.pdfLink && (
               <a
-                href={drop.pdfLink}
+                 href={drop.pdfLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-text-light dark:bg-text-dark text-white dark:text-black px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-accent/10"
@@ -107,11 +115,11 @@ export default async function NewReleasePage({ params }: Props) {
                 playingLabel="Playing Podcast..."
                 icon={<Mic2 size={16} className="text-white dark:text-black" />}
                 track={{
-                  id: drop.slug + "-podcast",
+                  id: drop.slug?.current + "-podcast",
                   title: drop.title + " (Podcast)",
                   artist: "Upnaad Podcast",
                   url: drop.podcastUrl,
-                  coverImage: drop.coverImage,
+                  coverImage: coverSrc,
                   youtubeUrl: drop.podcastUrl,
                   podcastUrl: drop.podcastUrl
                 }}
@@ -129,11 +137,11 @@ export default async function NewReleasePage({ params }: Props) {
                 playingLabel="Playing Music..."
                 icon={<MusicIcon size={16} className="text-white dark:text-black" />}
                 track={{
-                  id: drop.slug + "-audio",
+                  id: drop.slug?.current + "-audio",
                   title: drop.title,
                   artist: "Upnaad Sound",
                   url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Demo URL or use a real URL from track data if present
-                  coverImage: drop.coverImage,
+                  coverImage: coverSrc,
                   spotifyUrl: drop.spotifyUrl,
                   youtubeUrl: drop.youtubeUrl,
                   podcastUrl: drop.podcastUrl,
@@ -150,13 +158,14 @@ export default async function NewReleasePage({ params }: Props) {
 
       <div className="relative aspect-[16/9] rounded-3xl overflow-hidden mb-16 shadow-2xl group">
         <Image
-          src={drop.coverImage}
+          src={coverSrc}
           alt={drop.title}
           fill
           sizes="(max-width: 768px) 100vw, 720px"
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
           priority
           referrerPolicy="no-referrer"
+          crossOrigin="anonymous"
         />
       </div>
 
@@ -213,7 +222,9 @@ export default async function NewReleasePage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  return newReleases.map((drop) => ({
-    slug: drop.slug,
+  const drops = await client.fetch(allReleasesQuery);
+  return (drops || []).map((drop: any) => ({
+    slug: drop.slug?.current || drop.slug,
   }));
 }
+

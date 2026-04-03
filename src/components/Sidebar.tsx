@@ -18,7 +18,9 @@ import {
   Instagram,
   Twitter,
   Linkedin,
-  Mail
+  Mail,
+  FileText,
+  Briefcase
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import ThemeToggle from './ThemeToggle';
@@ -44,6 +46,8 @@ export default function Sidebar() {
     { name: 'Behind the Song', href: '/releases', icon: BookOpen },
     { name: 'Podcast', href: '/podcast', icon: Mic2 },
     { name: 'Music', href: '/music', icon: Music },
+    { name: 'Awareness', href: '/blog', icon: FileText },
+    { name: 'Services', href: '/services', icon: Briefcase },
     { name: 'Archive', href: '/archive', icon: Archive },
     { name: 'Collaborate', href: '/collaborate', icon: Users },
     { name: 'About', href: '/about', icon: Info },

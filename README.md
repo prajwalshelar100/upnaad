@@ -4,60 +4,45 @@
 
 UPNAAD is a creative exploration platform that translates ideas from culture, science, philosophy, and society into music, essays, and conversations.
 
-The project experiments with the relationship between **ideas and sound** — exploring how complex concepts can be interpreted and communicated through artistic media such as music and dialogue.
+---
 
-UPNAAD acts as a **creative interpretation layer**, where themes inspired by research, observations, and questions about the world are expressed through songs, discussions, and writing.
+## 🧭 Concept
+Each release follows a structured journey:
+**Idea** → **Research Notes/Essay** → **Podcast Dialogue** → **Musical Interpretation**
 
 ---
 
-## Concept
-
-Each UPNAAD release can follow a simple structure:
-
-Idea or Question
-↓
-Exploratory Notes or Essay
-↓
-Podcast Conversation
-↓
-Music Interpretation
-
-This process allows ideas to move across different forms of expression - from reflection to discussion to sound.
+## 🧩 Core Sections
+*   **Meaning Hub (`/meaning`)**: Deep-dive research into Sanskrit meaning, transliteration, and philosophical thesis behind each track.
+*   **Awareness Blog (`/blog`)**: Research-backed articles and news categorization.
+*   **Service Catalog (`/services`)**: Premium musical services including Sonic Branding, Custom Compositing, and Corporate Wellness subscriptions.
+*   **Music & Podcast**: Filterable catalogs for all sonic translations.
 
 ---
 
-## Purpose
-
-The goal of UPNAAD is to explore how artistic media can help people engage with meaningful ideas in a more accessible and emotional way.
-
-UPNAAD focuses on **creative interpretations of themes inspired by research and observation**.
-
----
-
-## Platform Features
-
-* Long-form essays and reflections
-* Research-inspired music releases
-* Podcast discussions
-* Clean reading experience inspired by knowledge platforms
-* Structured exploration of ideas across different domains
+## 🛠 Technology Stack
+*   **Framework**: Next.js 15+ (App Router)
+*   **CMS**: Sanity (Fully dynamic content management)
+*   **Styling**: Tailwind CSS (Custom Minimal Dark System)
+*   **Icons**: Lucide React
+*   **Deployment**: Optimized for Cloudflare Pages
 
 ---
 
-## Technology
+## 🚀 Deployment & Environment Variables
+The website is production-ready. Ensure the following environment variables are set in your production host (e.g., Vercel or Cloudflare):
 
-This platform is built using:
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+```
 
-* Next.js (App Router)
-* TypeScript
-* Tailwind CSS
-* Lucide React Icons
-* Responsive media embeds
-
-The website is designed to prioritize **clarity, readability, and exploration of ideas**.
+### Build Command
+```bash
+npm run build
+```
 
 ---
 
-## Author
-
+## 🖋 Author
 Created by **Prajwal Shelar**.

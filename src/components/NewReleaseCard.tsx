@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-import { NewRelease } from '@/src/data/releases';
+// 
 
-export default function NewReleaseCard({ drop }: { drop: NewRelease }) {
+export default function NewReleaseCard({ drop }: { drop: any }) {
   return (
     <Link
       href={`/releases/${drop.slug}`}

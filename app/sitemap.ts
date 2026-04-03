@@ -1,19 +1,27 @@
 import { MetadataRoute } from 'next';
-import { newReleases } from '@/src/data/releases';
+import { client } from '@/src/sanity/lib/client';
+import { allReleasesQuery, allBlogsQuery } from '@/src/sanity/lib/queries';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://upnaad.com';
+    
+    // Fetch dynamic data
+    const [newReleases, allBlogs] = await Promise.all([
+        client.fetch(allReleasesQuery),
+        client.fetch(allBlogsQuery)
+    ]);
 
     // 1. Define Static Routes with Priorities
-    // Priority 1.0 = Most important (Homepage)
-    // Priority 0.8 = Main category pages
     const staticRoutes: MetadataRoute.Sitemap = [
         { url: '', priority: 1.0, changeFrequency: 'daily' },
         { url: '/releases', priority: 0.9, changeFrequency: 'daily' },
-        { url: '/podcast', priority: 0.8, changeFrequency: 'weekly' },
+        { url: '/blog', priority: 0.9, changeFrequency: 'daily' },
+        { url: '/services', priority: 0.8, changeFrequency: 'weekly' },
         { url: '/music', priority: 0.8, changeFrequency: 'weekly' },
+        { url: '/podcast', priority: 0.8, changeFrequency: 'weekly' },
         { url: '/archive', priority: 0.7, changeFrequency: 'monthly' },
         { url: '/collaborate', priority: 0.5, changeFrequency: 'monthly' },
+        { url: '/services/inquire', priority: 0.5, changeFrequency: 'monthly' },
         { url: '/about', priority: 0.5, changeFrequency: 'monthly' },
     ].map((route) => ({
         url: `${baseUrl}${route.url}`,
@@ -22,17 +30,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route.priority,
     }));
 
-    // 2. Automatically generate Dynamic Routes for Research Drops
-    // This ensures every time you add a new study to your data file, 
-    // Google finds it instantly without you updating this file.
-    const dynamicResearchRoutes: MetadataRoute.Sitemap = newReleases.map((drop) => ({
-        url: `${baseUrl}/releases/${drop.slug}`,
-        // If your data has a date, use it; otherwise use current date
+    // 2. Dynamic Routes for Research Drops (Releases)
+    const dynamicResearchRoutes: MetadataRoute.Sitemap = (newReleases || []).map((drop: any) => ({
+        url: `${baseUrl}/releases/${drop.slug?.current || drop.slug}`,
         lastModified: drop.date ? new Date(drop.date) : new Date(),
         changeFrequency: 'monthly',
         priority: 0.7,
     }));
 
-    // 3. Combine them
-    return [...staticRoutes, ...dynamicResearchRoutes];
+    // 3. Dynamic Routes for Meaning Hub
+    const dynamicMeaningRoutes: MetadataRoute.Sitemap = (newReleases || []).map((drop: any) => ({
+        url: `${baseUrl}/meaning/${drop.slug?.current || drop.slug}`,
+        lastModified: drop.date ? new Date(drop.date) : new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+    }));
+
+    // 4. Dynamic Routes for Blog Posts
+    const dynamicBlogRoutes: MetadataRoute.Sitemap = (allBlogs || []).map((post: any) => ({
+        url: `${baseUrl}/blog/${post.slug?.current || post.slug}`,
+        lastModified: post.date ? new Date(post.date) : new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+    }));
+
+    // 5. Combine them
+    return [...staticRoutes, ...dynamicResearchRoutes, ...dynamicMeaningRoutes, ...dynamicBlogRoutes];
 }

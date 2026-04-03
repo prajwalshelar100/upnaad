@@ -79,6 +79,43 @@ export const releaseType = defineType({
       type: 'text',
     }),
     defineField({
+      name: 'sanskritText',
+      title: 'Sanskrit Text (Orig)',
+      type: 'text',
+    }),
+    defineField({
+      name: 'transliteration',
+      title: 'Transliteration',
+      type: 'text',
+    }),
+    defineField({
+      name: 'simpleMeaning',
+      title: 'Simple Meaning',
+      type: 'text',
+    }),
+    defineField({
+      name: 'deepInterpretation',
+      title: 'Deep Interpretation',
+      type: 'text',
+    }),
+    defineField({
+      name: 'philosophicalExplanation',
+      title: 'Scientific / Philosophical Explanation',
+      type: 'text',
+    }),
+    defineField({
+      name: 'whyItMatters',
+      title: 'Why It Matters Today',
+      type: 'text',
+    }),
+    defineField({
+      name: 'relatedReleases',
+      title: 'Related Releases / Songs',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'release' }] }],
+    }),
+
+    defineField({
       name: 'topics',
       title: 'Topics',
       type: 'array',

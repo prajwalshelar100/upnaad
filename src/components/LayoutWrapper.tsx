@@ -70,6 +70,8 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                 <Link href="/releases" onClick={() => setIsMobileMenuOpen(false)}>Behind the Song</Link>
                 <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)}>Podcast</Link>
                 <Link href="/music" onClick={() => setIsMobileMenuOpen(false)}>Music</Link>
+                <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Awareness</Link>
+                <Link href="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
                 <Link href="/archive" onClick={() => setIsMobileMenuOpen(false)}>Archive</Link>
                 <Link href="/collaborate" onClick={() => setIsMobileMenuOpen(false)}>Collaborate</Link>
                 <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>

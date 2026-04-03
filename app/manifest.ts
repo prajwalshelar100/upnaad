@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'A research + music + podcast platform exploring the intersection of sound and society.',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#000000',
+        background_color: '#0a0f1a',
+        theme_color: '#0a0f1a',
         icons: [
             {
                 src: '/icon.png',

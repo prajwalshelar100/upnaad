@@ -15,9 +15,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { useEffect, useState } from 'react';
-import { newReleases as localReleases } from '@/src/data/releases';
-import { podcastEpisodes as localPodcasts } from '@/src/data/podcast';
-import { musicTracks as localMusic } from '@/src/data/music';
+// 
 import { client } from '@/src/sanity/lib/client';
 import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
@@ -36,9 +34,9 @@ export default function ContextPanel() {
     toggleReadingMode
   } = useTheme();
 
-  const [newReleases, setNewReleases] = useState<any[]>(localReleases);
-  const [podcastEpisodes, setPodcastEpisodes] = useState<any[]>(localPodcasts);
-  const [musicTracks, setMusicTracks] = useState<any[]>(localMusic);
+  const [newReleases, setNewReleases] = useState<any[]>([]);
+  const [podcastEpisodes, setPodcastEpisodes] = useState<any[]>([]);
+  const [musicTracks, setMusicTracks] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -121,26 +119,45 @@ export default function ContextPanel() {
               </div>
             </section>
 
-            <section>
-              <div className="flex items-center gap-2 mb-4">
-                <Mic2 size={14} className="text-accent" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Latest Podcast</h3>
-              </div>
-              <Link href="/podcast" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
-                <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{podcastEpisodes[0].title}</p>
-                <p className="text-[10px] text-text-secondary line-clamp-1">{podcastEpisodes[0].description}</p>
-              </Link>
-            </section>
+            {podcastEpisodes.length > 0 && (
+              <section>
+                <div className="flex items-center gap-2 mb-4">
+                  <Mic2 size={14} className="text-accent" />
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Latest Podcast</h3>
+                </div>
+                <Link href="/podcast" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
+                  <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{podcastEpisodes[0]?.title}</p>
+                  <p className="text-[10px] text-text-secondary line-clamp-1">{podcastEpisodes[0]?.description}</p>
+                </Link>
+              </section>
+            )}
 
-            <section>
-              <div className="flex items-center gap-2 mb-4">
-                <MusicIcon size={14} className="text-accent" />
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Music Track</h3>
-              </div>
-              <Link href="/music" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
-                <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{musicTracks[0].title}</p>
-                <p className="text-[10px] text-text-secondary line-clamp-1">{musicTracks[0].description}</p>
-              </Link>
+            {musicTracks.length > 0 && (
+              <section>
+                <div className="flex items-center gap-2 mb-4">
+                  <MusicIcon size={14} className="text-accent" />
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Music Track</h3>
+                </div>
+                <Link href="/music" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
+                  <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{musicTracks[0]?.title}</p>
+                  <p className="text-[10px] text-text-secondary line-clamp-1">{musicTracks[0]?.description}</p>
+                </Link>
+              </section>
+            )}
+
+            <section className="pt-6 border-t border-border-light dark:border-border-dark">
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary mb-4">Join Newsletter</h3>
+              <form onSubmit={(e) => { e.preventDefault(); (e.target as any).reset(); alert("Subscribed!"); }} className="space-y-3">
+                <input 
+                  type="email" 
+                  placeholder="Email Address" 
+                  required 
+                  className="w-full bg-gray-50 dark:bg-gray-900 border border-border-light dark:border-border-dark px-3 py-2 rounded-lg text-xs outline-none focus:border-accent transition-colors"
+                />
+                <button type="submit" className="w-full bg-text-light dark:bg-text-dark text-white dark:text-black font-bold uppercase tracking-widest text-[10px] py-2.5 rounded-lg hover:opacity-90 transition-opacity">
+                  Subscribe
+                </button>
+              </form>
             </section>
 
             <section className="pt-6 border-t border-border-light dark:border-border-dark">

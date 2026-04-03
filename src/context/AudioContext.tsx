@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { newReleases } from '@/src/data/releases';
+// 
 
 export interface AudioTrack {
     id: string;
@@ -37,14 +37,10 @@ const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
     const defaultTrack: AudioTrack = {
-        id: newReleases[0].slug + "-audio",
+        id: "default-audio",
         title: "The Rhythm of Identity",
         artist: "Upnaad Sound",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        coverImage: newReleases[0].coverImage,
-        spotifyUrl: newReleases[0].spotifyUrl,
-        youtubeUrl: newReleases[0].youtubeUrl,
-        lyrics: "These are the default lyrics...\nMusic is the silence between the notes.\nCan you feel the rhythm?\nThe sound of identity forming.\n\n(Instrumental break)\n\nWe are the echoes of the bass.\nLost in the frequency.\nFound in the resonance.\nUpnaad Sound."
     };
 
     const [currentTrack, setCurrentTrack] = useState<AudioTrack | null>(defaultTrack);

@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://upnaad.com"),
   title: "UPNAAD — Research in Motion. Sound with Substance.",
   description: "A research + music + podcast platform exploring the intersection of sound and society.",
+  keywords: [
+    "Sanskrit music",
+    "meditation music India",
+    "focus music for studying",
+    "spiritual sound healing",
+    "ancient mantra meaning",
+    "sound therapy research",
+    "UPNAAD",
+    "consciousness through sound",
+  ],
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/icon.png",

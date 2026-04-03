@@ -11,7 +11,10 @@ export default function robots(): MetadataRoute.Robots {
                     '/',
                     '/releases',
                     '/podcast',
-                    '/music'
+                    '/music',
+                    '/blog',
+                    '/services',
+                    '/meaning'
                 ],
                 disallow: [
                     '/_next/',       // Prevents crawling of build files
