@@ -29,13 +29,6 @@ Each release follows a structured journey:
 
 ---
 
-## 🚀 Deployment & Environment Variables
-The website is production-ready. Ensure the following environment variables are set in your production host (e.g., Vercel or Cloudflare):
-
-```bash
-NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
-NEXT_PUBLIC_SANITY_DATASET="production"
-```
 
 ### Build Command
 ```bash
