@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Play, BookOpen, Mic2 } from 'lucide-react';
+import { ArrowRight, Play, BookOpen, Mic2, Flame, Brain, Music } from 'lucide-react';
 import { motion } from 'motion/react';
 import SocialIcons from '@/src/components/SocialIcons';
 import { urlForImage } from '@/src/sanity/lib/image';
@@ -14,7 +14,35 @@ interface HomeClientProps {
   services?: any[];
 }
 
+const FEATURED_TOPICS = [
+  {
+    title: "Digital Solitude",
+    description: "The paradox of feeling lonely while being hyper-connected.",
+    status: "Trending",
+    icon: Flame,
+    color: "text-orange-500",
+    bg: "bg-orange-500/10"
+  },
+  {
+    title: "AI Creativity",
+    description: "Who owns the soul of a song if an algorithm helped write it?",
+    status: "Under Research",
+    icon: Brain,
+    color: "text-blue-500",
+    bg: "bg-blue-500/10"
+  },
+  {
+    title: "Modern Materialism",
+    description: "Bridging 21st-century consumerism and traditional values.",
+    status: "Song Released",
+    icon: Music,
+    color: "text-green-500",
+    bg: "bg-green-500/10"
+  }
+];
+
 export default function HomeClient({ homeData, latestDrop, latestBlogs = [], services = [] }: HomeClientProps) {
+  // ... (existing code unchanged until services section)
   // Fallbacks if data isn't provided through Sanity yet
   const title = homeData?.title || "UPNAAD";
   const subtitle = homeData?.subtitle || "Meaning in every note. Sound with Substance.";
@@ -158,6 +186,35 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
         </section>
       )}
 
+      {/* Community Topics Section */}
+      <section className="pt-10 border-t border-border-light dark:border-border-dark">
+        <div className="flex items-end justify-between gap-4 mb-10">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent block mb-2">The Awareness Engine</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">🔥 Community Topics</h2>
+          </div>
+          <Link href="/topics" className="text-xs font-bold uppercase tracking-widest text-accent hover:underline flex items-center gap-2">
+            Explore All Topics <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {FEATURED_TOPICS.map((topic, i) => (
+            <Link 
+              href="/topics" 
+              key={i} 
+              className="p-8 bg-white dark:bg-[#111111] rounded-[2rem] border border-border-light dark:border-border-dark hover:border-accent transition-all duration-300 group"
+            >
+              <div className={`w-10 h-10 rounded-full ${topic.bg} ${topic.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <topic.icon size={20} />
+              </div>
+              <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{topic.title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed mb-4">{topic.description}</p>
+              <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">{topic.status}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Services Preview */}
       {services.length > 0 && (
         <section className="pt-10 border-t border-border-light dark:border-border-dark">
@@ -216,11 +273,16 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
           <p className="font-bold tracking-tighter text-xl">{title}</p>
           <p className="text-xs text-text-secondary uppercase tracking-[0.2em]">{subtitle.replace(/<[^>]+>/g, '')}</p>
         </div>
-        <div className="flex flex-col items-center md:items-end gap-6">
+        <div className="flex flex-col items-center md:items-end gap-6 text-center md:text-right">
           <SocialIcons />
-          <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest">
-            © {new Date().getFullYear()} {title} Platform • All Rights Reserved
-          </p>
+          <div className="space-y-1">
+            <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest">
+              © {new Date().getFullYear()} {title} Platform • All Rights Reserved
+            </p>
+            <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest">
+              Built by <a href="https://prajwalshelar.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline transition-all">Prajwal Shelar</a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>

@@ -57,7 +57,7 @@ export default function WelcomeTutorial() {
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-2 block">
                 Welcome to
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-text-light dark:text-text-dark">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-text-primary dark:text-text-primary">
                 UPNAAD
               </h2>
               <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-10 max-w-xl">

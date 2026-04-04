@@ -13,6 +13,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CookieBanner from './CookieBanner';
 import WelcomeTutorial from './WelcomeTutorial';
+import GuidedAssistant from './GuidedAssistant';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -70,6 +71,8 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                 <Link href="/releases" onClick={() => setIsMobileMenuOpen(false)}>Behind the Song</Link>
                 <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)}>Podcast</Link>
                 <Link href="/music" onClick={() => setIsMobileMenuOpen(false)}>Music</Link>
+                <Link href="/topics" onClick={() => setIsMobileMenuOpen(false)}>Topics</Link>
+                <Link href="/submit-topic" onClick={() => setIsMobileMenuOpen(false)}>Submit a Topic</Link>
                 <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Awareness</Link>
                 <Link href="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
                 <Link href="/archive" onClick={() => setIsMobileMenuOpen(false)}>Archive</Link>
@@ -127,6 +130,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <GlobalMusicPlayer />
       <CookieBanner />
       <WelcomeTutorial />
+      <GuidedAssistant />
     </div>
   );
 }

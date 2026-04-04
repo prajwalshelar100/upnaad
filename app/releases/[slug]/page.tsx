@@ -79,7 +79,7 @@ export default async function NewReleasePage({ params }: Props) {
           ))}
           <span className="text-[10px] font-mono text-text-secondary ml-auto">{drop.date}</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1] text-text-light dark:text-text-dark">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1] text-text-primary dark:text-text-primary">
           {drop.title}
         </h1>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-10 border-b border-border-light dark:border-border-dark">

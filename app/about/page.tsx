@@ -61,7 +61,7 @@ export default async function AboutPage() {
 
         <div className="text-lg md:text-xl text-text-secondary leading-relaxed space-y-6 md:space-y-8 font-light">
           <p>
-            UPNAAD explores the relationship between <span className="text-text-light dark:text-text-dark font-medium italic">ideas and sound</span>.
+            UPNAAD explores the relationship between <span className="text-text-primary dark:text-text-primary font-medium italic">ideas and sound</span>.
             Music has always been a way for societies to express questions, emotions, and collective experiences.
           </p>
 

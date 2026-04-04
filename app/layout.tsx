@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/src/components/ThemeProvider";
 import { AudioProvider } from "@/src/context/AudioContext";
 import LayoutWrapper from "@/src/components/LayoutWrapper";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,6 +46,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZJN2EDM4HL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZJN2EDM4HL');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider>
           <AudioProvider>

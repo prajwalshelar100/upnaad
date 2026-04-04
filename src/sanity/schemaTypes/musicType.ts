@@ -69,5 +69,23 @@ export const musicType = defineType({
       title: 'Related Research Slug',
       type: 'string',
     }),
+    defineField({
+      name: 'theme',
+      title: 'Awareness Theme',
+      type: 'string',
+      description: 'The core topic or issue this track explores.',
+    }),
+    defineField({
+      name: 'meaning',
+      title: 'Short Meaning',
+      type: 'text',
+      description: 'A brief explanation of how the sound connects to the theme.',
+    }),
+    defineField({
+      name: 'linkedTopic',
+      title: 'Linked Topic (Optional)',
+      type: 'string',
+      description: 'Future connection to the topic submission engine.',
+    }),
   ],
 })

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageHeader from '@/src/components/PageHeader';
 import ListenButton from '@/src/components/ListenButton';
-import { Search, ChevronDown, Users, BookOpen, Music as MusicIcon, Play, ExternalLink } from 'lucide-react';
+import { Search, ChevronDown, Users, BookOpen, Music as MusicIcon, Play, ExternalLink, ArrowRight } from 'lucide-react';
 import { urlForImage } from '@/src/sanity/lib/image';
 
 interface MusicClientProps {
@@ -85,8 +85,26 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
 
       <div className="space-y-16">
         {filteredTracks.length === 0 ? (
-          <div className="text-center py-20 text-text-secondary">
-            No tracks found matching your criteria.
+          <div className="text-center py-24 space-y-8 bg-gray-50 dark:bg-[#111111] rounded-[3rem] border border-dashed border-border-light dark:border-border-dark">
+            <div className="flex justify-center flex-wrap gap-4 opacity-20">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="w-32 h-32 bg-gray-200 dark:bg-gray-800 rounded-2xl" />
+              ))}
+            </div>
+            <div className="space-y-4 max-w-sm mx-auto">
+              <h3 className="text-2xl font-bold tracking-tight">Tracks Coming Soon</h3>
+              <p className="text-text-secondary font-light">
+                We are currently researching and recording new sonic translations. Check back soon or submit a topic to influence our next drop.
+              </p>
+              <div className="pt-4">
+                <Link 
+                  href="/submit-topic" 
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent hover:underline"
+                >
+                  Submit a Topic <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
           </div>
         ) : (
           filteredTracks.map(track => {

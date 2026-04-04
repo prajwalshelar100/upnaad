@@ -52,6 +52,9 @@ export default function MobileFooter() {
                     <span className="font-bold text-2xl tracking-tighter text-text-light dark:text-text-dark">UPNAAD</span>
                     <p className="text-xs font-mono text-text-secondary">© {new Date().getFullYear()} UPNAAD.</p>
                     <p className="text-xs font-mono text-text-secondary">All rights reserved.</p>
+                    <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest pt-2">
+                        Built by <a href="https://prajwalshelar.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline transition-all">Prajwal Shelar</a>
+                    </p>
                 </div>
             </div>
         </footer>

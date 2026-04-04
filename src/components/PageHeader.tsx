@@ -14,7 +14,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, description, className }: PageHeaderProps) {
   return (
     <header className={cn("mb-16 space-y-4", className)}>
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-light dark:text-text-dark">
+      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary dark:text-text-primary">
         {title}
       </h1>
       {description && (

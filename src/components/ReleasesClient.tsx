@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import NewReleaseCard from '@/src/components/NewReleaseCard';
 import PageHeader from '@/src/components/PageHeader';
-import { Filter } from 'lucide-react';
+import { Filter, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { urlForImage } from '@/src/sanity/lib/image';
 
 interface ReleasesClientProps {
@@ -52,11 +53,30 @@ export default function ReleasesClient({ initialReleases }: ReleasesClientProps)
         ))}
       </div>
 
-      <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        {filteredDrops.map(drop => (
-          <NewReleaseCard key={drop.slug} drop={drop} />
-        ))}
-      </div>
+      {filteredDrops.length === 0 ? (
+        <div className="text-center py-24 space-y-8 bg-gray-50 dark:bg-[#111111] rounded-[3rem] border border-dashed border-border-light dark:border-border-dark">
+          <div className="space-y-4 max-w-sm mx-auto">
+            <h3 className="text-2xl font-bold tracking-tight">Research Underway</h3>
+            <p className="text-text-secondary font-light">
+              We are currently layering research and meaning for new releases. Explore our existing drops or influence the next one.
+            </p>
+            <div className="pt-4">
+              <Link 
+                href="/submit-topic" 
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent hover:underline"
+              >
+                Submit a Topic <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          {filteredDrops.map(drop => (
+            <NewReleaseCard key={drop.slug} drop={drop} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

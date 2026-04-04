@@ -56,7 +56,7 @@ export default function CookieBanner() {
                       <Cookie size={20} className="text-accent" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold tracking-tight mb-1 text-text-light dark:text-text-dark flex items-center gap-2">
+                      <h4 className="text-sm font-bold tracking-tight mb-1 text-text-primary dark:text-text-primary flex items-center gap-2">
                         We use cookies! 🍪
                         <button 
                           onClick={() => setShowExplanation(true)}
@@ -100,9 +100,9 @@ export default function CookieBanner() {
                     </button>
                   </div>
                   <ul className="text-xs text-text-secondary space-y-2 list-disc pl-4">
-                    <li><strong className="text-text-light dark:text-text-dark">Theme Preference:</strong> We remember if you prefer Light or Dark mode.</li>
-                    <li><strong className="text-text-light dark:text-text-dark">Music State:</strong> Keeps your audio playing and remembers volume exactly as you left it.</li>
-                    <li><strong className="text-text-light dark:text-text-dark">Tutorials:</strong> Makes sure we never bother you with the welcome tutorial once you've seen it!</li>
+                    <li><strong className="text-text-primary dark:text-text-primary">Theme Preference:</strong> We remember if you prefer Light or Dark mode.</li>
+                    <li><strong className="text-text-primary dark:text-text-primary">Music State:</strong> Keeps your audio playing and remembers volume exactly as you left it.</li>
+                    <li><strong className="text-text-primary dark:text-text-primary">Tutorials:</strong> Makes sure we never bother you with the welcome tutorial once you've seen it!</li>
                   </ul>
                   <p className="text-[10px] text-text-secondary mt-4 font-mono">
                     We do NOT use external tracking cookies, analytics cookies, or marketing trackers. Your data stays completely on your device.

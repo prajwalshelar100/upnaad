@@ -69,7 +69,7 @@ export default async function MeaningPage({ params }: Props) {
             Meaning & Research
           </span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] text-text-light dark:text-text-dark">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] text-text-primary dark:text-text-primary">
           {drop.title}
         </h1>
         <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto">
@@ -109,7 +109,7 @@ export default async function MeaningPage({ params }: Props) {
             {drop.sanskritText && (
               <div className="mb-8">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary mb-4">Original Sanskrit</h3>
-                <p className="text-2xl md:text-4xl font-serif leading-loose text-text-light dark:text-text-dark">
+                <p className="text-2xl md:text-4xl font-serif leading-loose text-text-primary dark:text-text-primary">
                   {drop.sanskritText}
                 </p>
               </div>

@@ -68,7 +68,7 @@ export default async function BlogPostPage({ params }: Props) {
           ))}
           {post.date && <span className="text-[10px] font-mono text-gray-500">{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>}
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1] text-text-light dark:text-text-dark">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1] text-text-primary dark:text-text-primary">
           {post.title}
         </h1>
         {post.excerpt && (
