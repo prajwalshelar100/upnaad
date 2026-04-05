@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageHeader from '@/src/components/PageHeader';
 import ListenButton from '@/src/components/ListenButton';
-import { Search, ChevronDown, Users, BookOpen, Music as MusicIcon, Play, ExternalLink, ArrowRight } from 'lucide-react';
+import { Search, ChevronDown, Users, BookOpen, Music as MusicIcon, Play, ExternalLink, ArrowRight, Youtube } from 'lucide-react';
 import { urlForImage } from '@/src/sanity/lib/image';
 
 interface MusicClientProps {
@@ -30,23 +30,24 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
   });
 
   return (
-    <div className="space-y-12 pb-20">
+    <div className="py-12 space-y-16 pb-20">
       <PageHeader
         title="Music Catalogue"
         description="Search, stream, and collaborate on our sonic translations."
+        className="mb-0"
       />
 
       {/* Controls: Search and Filters */}
-      <div className="flex flex-col md:flex-row gap-6 mb-12">
+      <div className="flex flex-col md:flex-row gap-6">
         {/* Search Bar */}
         <div className="relative flex-1">
-          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+          <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none text-text-secondary/40">
+            <Search className="h-5 w-5" />
           </div>
           <input
             type="text"
-            className="w-full h-full bg-gray-50 dark:bg-[#111111] border border-border-light dark:border-border-dark rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-accent transition-colors placeholder:text-gray-400"
-            placeholder="Search tracks or descriptions..."
+            className="w-full bg-white dark:bg-gray-900 border border-border-light dark:border-border-dark rounded-3xl py-4 pl-16 pr-6 text-sm focus:outline-none focus:border-accent transition-all placeholder:text-text-secondary/40 shadow-sm"
+            placeholder="Filter tracks or descriptions..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -58,13 +59,13 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl py-4 pl-4 pr-10 text-sm font-bold appearance-none focus:outline-none focus:border-accent transition-colors cursor-pointer"
+              className="w-full bg-white dark:bg-gray-900 border border-border-light dark:border-border-dark rounded-2xl py-4 pl-6 pr-12 text-[10px] font-bold uppercase tracking-widest appearance-none focus:outline-none focus:border-accent transition-all cursor-pointer shadow-sm"
             >
               {categories.map(cat => (
                 <option key={cat as string} value={cat as string}>{cat as string}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+            <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 h-5 w-5 text-text-secondary/40 pointer-events-none" />
           </div>
 
           {/* Genre Dropdown */}
@@ -72,54 +73,38 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
             <select
               value={activeGenre}
               onChange={(e) => setActiveGenre(e.target.value)}
-              className="w-full bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl py-4 pl-4 pr-10 text-sm font-bold appearance-none focus:outline-none focus:border-accent transition-colors cursor-pointer"
+              className="w-full bg-white dark:bg-gray-900 border border-border-light dark:border-border-dark rounded-2xl py-4 pl-6 pr-12 text-[10px] font-bold uppercase tracking-widest appearance-none focus:outline-none focus:border-accent transition-all cursor-pointer shadow-sm"
             >
               {genres.map(genre => (
                 <option key={genre as string} value={genre as string}>{genre as string}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+            <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 h-5 w-5 text-text-secondary/40 pointer-events-none" />
           </div>
         </div>
       </div>
 
-      <div className="space-y-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredTracks.length === 0 ? (
-          <div className="text-center py-24 space-y-8 bg-gray-50 dark:bg-[#111111] rounded-[3rem] border border-dashed border-border-light dark:border-border-dark">
-            <div className="flex justify-center flex-wrap gap-4 opacity-20">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-32 h-32 bg-gray-200 dark:bg-gray-800 rounded-2xl" />
-              ))}
-            </div>
-            <div className="space-y-4 max-w-sm mx-auto">
-              <h3 className="text-2xl font-bold tracking-tight">Tracks Coming Soon</h3>
-              <p className="text-text-secondary font-light">
-                We are currently researching and recording new sonic translations. Check back soon or submit a topic to influence our next drop.
-              </p>
-              <div className="pt-4">
-                <Link 
-                  href="/submit-topic" 
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent hover:underline"
-                >
-                  Submit a Topic <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
+          <div className="col-span-full py-20 text-center italic text-text-secondary">
+            No tracks found matching your filters.
           </div>
         ) : (
           filteredTracks.map(track => {
             const artworkSrc = track.artwork ? urlForImage(track.artwork).url() : track.artworkUrlFallback || "https://picsum.photos/seed/placeholder/400/400";
             return (
-              <div key={track._id || track.id} className="flex flex-col lg:flex-row gap-12 items-start border-b border-border-light dark:border-border-dark pb-16 last:border-0 last:pb-0">
-
-                {/* Left: Artwork */}
-                <div className="relative w-full lg:w-[400px] aspect-square rounded-3xl overflow-hidden shadow-2xl shrink-0 group">
+              <div 
+                key={track._id || track.id} 
+                className="flex flex-col bg-white/50 dark:bg-white/5 border border-border-light dark:border-border-dark rounded-[2.5rem] shadow-premium group overflow-hidden"
+              >
+                {/* Artwork Area */}
+                <div className="relative aspect-square w-full overflow-hidden">
                   <Image
                     src={artworkSrc}
                     alt={track.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 400px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                     crossOrigin="anonymous"
                   />
@@ -127,9 +112,8 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
                   {track.audioUrl && (
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <ListenButton
-                        label="Play Song"
-                        playingLabel="Now Playing"
-                        icon={<Play size={20} className="fill-current" />}
+                        label="Play"
+                        playingLabel="Playing"
                         track={{
                           id: track._id || track.id,
                           title: track.title,
@@ -144,94 +128,53 @@ export default function MusicClient({ initialTracks }: MusicClientProps) {
                   )}
                 </div>
 
-                {/* Right: Content & Actions */}
-                <div className="flex-1 flex flex-col w-full gap-8">
-
-                  {/* Headers and Badges */}
-                  <div className="w-full flex flex-col">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {track.category && (
-                        <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/5 px-3 py-1.5 rounded-md border border-accent/10">
+                {/* Content Area */}
+                <div className="p-8 flex flex-col flex-1 gap-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                       {track.category && (
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/5 px-3 py-1 rounded-full border border-accent/10">
                           {track.category}
                         </span>
                       )}
-                      {track.genre && (
-                        <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-text-secondary bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-md">
-                          {track.genre}
-                        </span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary/50">
+                        {track.genre}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight group-hover:text-accent transition-colors leading-tight">
+                      {track.title}
+                    </h3>
+                    <p className="text-sm text-text-secondary font-light leading-relaxed line-clamp-2">
+                      {track.description}
+                    </p>
+                  </div>
+
+                  {/* Actions Area */}
+                  <div className="mt-auto pt-6 border-t border-border-light/50 dark:border-border-dark/50 flex flex-col gap-3">
+                    <div className="flex gap-2">
+                      {track.spotifyUrl && (
+                        <a href={track.spotifyUrl} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#1DB954] text-white p-3 rounded-xl hover:bg-[#1ed760] transition-colors flex items-center justify-center shadow-lg shadow-green-500/10">
+                          <MusicIcon size={18} />
+                        </a>
+                      )}
+                      {track.youtubeUrl && (
+                        <a href={track.youtubeUrl} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#FF0000] text-white p-3 rounded-xl hover:bg-[#ff3333] transition-colors flex items-center justify-center shadow-lg shadow-red-500/10">
+                          <Youtube size={18} />
+                        </a>
                       )}
                     </div>
-                    <h3 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">{track.title}</h3>
-                    <p className="text-sm font-mono text-text-secondary">{track.date}</p>
-                  </div>
-
-                  <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl font-light">
-                    {track.description}
-                  </p>
-
-                  {/* Primary Actions (Listen) */}
-                  <div className="flex flex-wrap gap-3 w-full border-t border-border-light dark:border-border-dark pt-8">
-                    {track.audioUrl && (
-                      <ListenButton
-                        label="Play the Song"
-                        playingLabel="Now Playing"
-                        icon={<MusicIcon size={16} />}
-                        track={{
-                          id: track._id || track.id,
-                          title: track.title,
-                          artist: "Upnaad Sound",
-                          url: track.audioUrl,
-                          coverImage: artworkSrc,
-                          spotifyUrl: track.spotifyUrl,
-                          youtubeUrl: track.youtubeUrl
-                        }}
-                      />
-                    )}
-
-                    {track.spotifyUrl && (
-                      <a
-                        href={track.spotifyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#1DB954] text-white px-5 py-2.5 rounded-full hover:bg-[#1ed760] transition-colors font-bold text-sm"
-                      >
-                        Listen on Spotify <ExternalLink size={14} />
-                      </a>
-                    )}
-
-                    {track.youtubeUrl && (
-                      <a
-                        href={track.youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#FF0000] text-white px-5 py-2.5 rounded-full hover:bg-[#ff3333] transition-colors font-bold text-sm"
-                      >
-                        Listen on YouTube <ExternalLink size={14} />
-                      </a>
-                    )}
-                  </div>
-
-                  {/* Secondary Actions (Research & Collaborate) */}
-                  <div className="flex flex-wrap gap-3 w-full">
-                    {track.relatedResearchSlug && (
-                      <Link
-                        href={`/releases/${track.relatedResearchSlug}`}
-                        className="inline-flex items-center justify-center gap-2 bg-text-light dark:bg-text-dark text-white dark:text-black px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-accent/10"
-                      >
-                        <BookOpen size={14} />
-                        Behind the Song
+                    
+                    <div className="flex gap-2">
+                      {track.relatedResearchSlug && (
+                        <Link href={`/releases/${track.relatedResearchSlug}`} className="flex-1 bg-text-light dark:bg-text-dark text-white dark:text-black py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                          Research <ArrowRight size={14} />
+                        </Link>
+                      )}
+                      <Link href={`/collaborate?reference=${track._id || track.id}`} className="flex-1 border border-border-light dark:border-border-dark py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+                        Collab <Users size={14} />
                       </Link>
-                    )}
-
-                    <Link
-                      href={`/collaborate?reference=${track._id || track.id}`}
-                      className="inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#1A1A1A] dark:hover:bg-[#222222] px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-colors"
-                    >
-                      <Users size={14} />
-                      Collaborate
-                    </Link>
+                    </div>
                   </div>
-
                 </div>
               </div>
             );

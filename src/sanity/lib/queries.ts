@@ -27,3 +27,6 @@ export const blogBySlugQuery = groq`*[_type == "blog" && slug.current == $slug][
 // Query for all services
 export const allServicesQuery = groq`*[_type == "service"]`;
 
+// Query for all topics
+export const allTopicsQuery = groq`*[_type == "topic"] | order(upvotes desc, _createdAt desc)`;
+

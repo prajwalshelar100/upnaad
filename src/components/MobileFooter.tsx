@@ -35,16 +35,32 @@ export default function MobileFooter() {
 
                 <div className="pt-8 border-t border-border-light dark:border-border-dark">
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary mb-5">Resources</h3>
-                    <div className="space-y-4">
-                        <a href="#" className="flex items-center justify-between text-sm font-medium text-text-secondary hover:text-accent transition-colors group p-1">
-                            Spotify Playlist <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col gap-3">
+                        <a 
+                            href="https://open.spotify.com/user/31lle7khoqvlaqco6dsujppwadky?si=61326e719cec4eae" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex items-center justify-between p-4 rounded-2xl bg-[#1DB954]/5 dark:bg-[#1DB954]/10 border border-[#1DB954]/20 transition-all font-bold group"
+                        >
+                            <span className="text-xs text-[#1DB954]">Spotify Playlist</span>
+                            <ExternalLink size={14} className="text-[#1DB954] opacity-70 group-hover:opacity-100 transition-opacity" />
                         </a>
-                        <a href="#" className="flex items-center justify-between text-sm font-medium text-text-secondary hover:text-accent transition-colors group p-1">
-                            YouTube Channel <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                        <a 
+                            href="https://www.youtube.com/channel/UCSOQzKtkWP3Wues4CA_m3Gw" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex items-center justify-between p-4 rounded-2xl bg-[#FF0000]/5 dark:bg-[#FF0000]/10 border border-[#FF0000]/20 transition-all font-bold group"
+                        >
+                            <span className="text-xs text-[#FF0000]">YouTube Channel</span>
+                            <ExternalLink size={14} className="text-[#FF0000] opacity-70 group-hover:opacity-100 transition-opacity" />
                         </a>
-                        <a href="#" className="flex items-center justify-between text-sm font-medium text-text-secondary hover:text-accent transition-colors group p-1">
-                            Research Archive <ExternalLink size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />
-                        </a>
+                        <Link 
+                            href="/archive" 
+                            className="flex items-center justify-between p-4 rounded-2xl bg-accent/5 dark:bg-accent/10 border border-accent/20 transition-all font-bold group"
+                        >
+                            <span className="text-xs text-accent">Research Archive</span>
+                            <ExternalLink size={14} className="text-accent opacity-70 group-hover:opacity-100 transition-opacity" />
+                        </Link>
                     </div>
                 </div>
 

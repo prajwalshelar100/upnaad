@@ -6,6 +6,7 @@ import { podcastType } from './podcastType'
 import { releaseType } from './releaseType'
 import { blogType } from './blogType'
 import { serviceType } from './serviceType'
+import { topicType } from './topicType'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   homeType,
@@ -14,5 +15,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   podcastType,
   blogType,
   serviceType,
+  topicType,
 ]
 

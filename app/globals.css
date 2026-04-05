@@ -7,6 +7,7 @@
   --font-serif: "Georgia", "Merriweather", serif;
   
   --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
   --color-text-light: var(--text-light);
   --color-text-dark: var(--text-dark);
   --color-text-secondary: var(--text-secondary);
@@ -14,29 +15,71 @@
   --color-border-dark: var(--border-dark);
   --color-background-light: var(--background-light);
   --color-background-dark: var(--background-dark);
+  --color-card-bg: var(--card-bg);
 }
 
 @layer base {
   :root {
-    --accent: #1E3A8A; /* Brand blue */
-    --text-light: #0f172a; /* Deeper slate for light mode */
-    --text-dark: #ffffff; /* Bright white for better contrast in dark mode */
-    --text-secondary: #475569; /* Better contrast secondary in light mode */
-    --border-light: #cbd5e1; /* Subtle slate border */
-    --border-dark: #1e293b;
-    --background-light: #f8fafc; /* Soft slate/blue tint for light mode background */
-    --background-dark: #0D0D0D;
+    --accent: #0284c7; /* Professional Sky Blue 700 */
+    --accent-secondary: #7c3aed; /* Royal Purple 600 */
+    --text-light: #0f172a; /* Slate 900 */
+    --text-dark: #f1f5f9; /* Ice White 100 */
+    --text-secondary: #475569; /* Slate 600 */
+    --border-light: #e2e8f0; /* Slate 200 */
+    --border-dark: rgba(255, 255, 255, 0.1);
+    --background-light: #f8fafc; /* Crisp Ice/Slate White 50 */
+    --background-dark: #0b1120; /* Deep Navy/Slate 950 */
+    --card-bg: #ffffff;
   }
 
   .dark {
-    --text-secondary: #94a3b8; /* Brighter secondary text for dark mode */
-    --border-dark: #334155; /* More visible border for dark mode */
-    --background-dark: #0a0f1a; /* Slight deep blue tint matching the logo for dark mode background */
+    --accent: #38bdf8; /* Brighter Sky Blue 400 */
+    --accent-secondary: #a78bfa; /* Soft Purple */
+    --text-secondary: #94a3b8; /* Slate 400 */
+    --border-dark: rgba(255, 255, 255, 0.05); /* Very subtle */
+    --background-dark: #0b1120;
+    --card-bg: rgba(15, 23, 42, 0.85); /* Solid Deep Glassmorphism */
+  }
+}
+
+@layer utilities {
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  }
+  
+  .glass {
+    @apply backdrop-blur-2xl bg-card-bg/90 border border-white/5 shadow-[0_16px_32px_-8px_rgba(0,0,0,0.1)];
+  }
+  
+  .glass-light {
+    @apply backdrop-blur-md bg-white/70 border border-slate-200/50 shadow-lg;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(2, 132, 199, 0.2);
+  }
+
+  .shadow-premium {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .shadow-premium:hover {
+    box-shadow: 0 25px 50px -12px rgba(2, 132, 199, 0.08);
+    transform: translateY(-4px);
   }
 }
 
 html, body {
   @apply bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark scroll-smooth transition-colors duration-500;
+  background-attachment: fixed;
+}
+
+.dark body {
+  background-image: 
+    radial-gradient(circle at 0% 0%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 1));
 }
 
 /* Page Transitions */

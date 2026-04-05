@@ -60,12 +60,15 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-screen bg-background-light dark:bg-background-dark border-r border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-50",
+        "fixed left-0 top-0 h-screen border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out z-50",
         isSidebarCollapsed ? "w-[72px]" : "w-[260px]",
         "hidden md:block"
       )}
     >
-      <div className="flex flex-col h-full overflow-hidden">
+      <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950 pointer-events-none" />
+      <div className="absolute inset-0 bg-sky-500/5 pointer-events-none" />
+      
+      <div className="relative flex flex-col h-full overflow-hidden">
         <div className={cn("flex flex-shrink-0 items-center transition-all duration-300", isSidebarCollapsed ? "p-4 justify-center" : "p-6 justify-between")}>
           {!isSidebarCollapsed && (
             <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity whitespace-nowrap overflow-hidden">
@@ -77,7 +80,7 @@ export default function Sidebar() {
           )}
           <button
             onClick={toggleSidebar}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors flex-shrink-0"
+            className="p-2 hover:bg-accent/10 dark:hover:bg-accent/10 rounded-lg transition-colors flex-shrink-0 text-text-secondary hover:text-accent"
             aria-label={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
           >
             {isSidebarCollapsed ? <PanelLeft size={20} /> : <PanelLeftClose size={20} />}
@@ -96,11 +99,11 @@ export default function Sidebar() {
                   className={cn(
                     "flex items-center gap-4 px-3 py-3 rounded-xl transition-all duration-200 group",
                     isActive
-                      ? "bg-gray-100 dark:bg-gray-800 text-accent font-semibold"
-                      : "text-text-secondary hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-text-light dark:hover:text-text-dark"
+                      ? "bg-accent text-white font-semibold shadow-premium"
+                      : "text-text-secondary hover:bg-accent/10 dark:hover:bg-accent/10 hover:text-accent"
                   )}
                 >
-                  <item.icon size={22} className={cn("shrink-0 transition-transform group-hover:scale-110", isActive && "text-accent")} />
+                  <item.icon size={22} className={cn("shrink-0 transition-transform group-hover:scale-110", isActive ? "text-white" : "group-hover:text-accent")} />
                   {!isSidebarCollapsed && (
                     <span className="text-sm tracking-tight whitespace-nowrap overflow-hidden">
                       {item.name}
@@ -122,7 +125,7 @@ export default function Sidebar() {
                 <div className="w-full h-px bg-border-light dark:bg-border-dark my-1"></div>
                 <button
                   onClick={() => setIsSocialsOpen(!isSocialsOpen)}
-                  className="flex items-center justify-between w-full px-3 py-3 rounded-xl text-text-secondary hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors group"
+                  className="flex items-center justify-between w-full px-3 py-3 rounded-xl text-text-secondary hover:bg-accent/5 transition-colors group"
                 >
                   <div className="flex items-center gap-4">
                     <div className="shrink-0 group-hover:scale-110 transition-transform"><Zap size={20} /></div>
@@ -152,7 +155,7 @@ export default function Sidebar() {
             ) : (
               <div className="flex flex-col gap-6 items-center mb-4 text-text-secondary">
                 <ThemeToggle />
-                <div className="w-8 h-px bg-border-light dark:bg-border-dark"></div>
+                <div className="w-8 h-px bg-accent/10"></div>
                 <a href="#" className="hover:text-accent transition-colors"><Twitter size={20} /></a>
                 <a href="#" className="hover:text-accent transition-colors"><Instagram size={20} /></a>
                 <a href="#" className="hover:text-accent transition-colors"><Linkedin size={20} /></a>

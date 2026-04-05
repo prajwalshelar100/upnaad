@@ -87,7 +87,7 @@ export default async function ServicesPage() {
         description="Leverage sound, consciousness, and technology for your brand, project, or personal growth."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
         {services.map((service: any) => {
           let IconComponent = AudioLines;
           if (service.icon === 'Sparkles') IconComponent = Sparkles;
@@ -137,7 +137,7 @@ export default async function ServicesPage() {
         })}
       </div>
 
-      <section className="bg-gray-50 dark:bg-gray-900 rounded-[3rem] p-10 md:p-16 text-center max-w-4xl mx-auto border border-border-light dark:border-border-dark">
+      <section className="bg-gray-50 dark:bg-gray-900 rounded-[3rem] p-10 md:p-16 text-center border border-border-light dark:border-border-dark mt-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Unsure where to start?</h2>
         <p className="text-xl text-text-secondary font-light mb-10 max-w-2xl mx-auto">
           Schedule a brief consultation call to discuss your creative constraints and discover how UPNAAD can map sound to your vision.

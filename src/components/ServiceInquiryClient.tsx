@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send, Briefcase } from 'lucide-react';
+import PageHeader from './PageHeader';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -60,13 +61,13 @@ export default function ServiceInquiryClient() {
   }
 
   return (
-    <div className="max-w-2xl">
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Service Inquiry</h1>
-        <p className="text-xl text-text-secondary font-light">
-          Let's discuss how UPNAAD can elevate your brand, wellness program, or personal project with tailored audio solutions.
-        </p>
-      </header>
+    <div className="py-12 space-y-16">
+      <PageHeader 
+        title="Service Inquiry"
+        description="Let's discuss how UPNAAD can elevate your brand, wellness program, or personal project with tailored audio solutions."
+        className="mb-0"
+      />
+      <div className="max-w-4xl">
 
       <form onSubmit={handleSubmit} className="space-y-10">
         <div className="space-y-3">
@@ -157,6 +158,7 @@ export default function ServiceInquiryClient() {
           <Send size={18} className={cn("transition-transform", status !== "submitting" && "group-hover:translate-x-1 group-hover:-translate-y-1")} />
         </button>
       </form>
+      </div>
     </div>
   );
 }

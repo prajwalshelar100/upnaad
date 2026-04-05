@@ -1,7 +1,7 @@
 import { client } from '@/src/sanity/lib/client';
 import { allPodcastQuery } from '@/src/sanity/lib/queries';
 import Image from 'next/image';
-import { Play } from 'lucide-react';
+import { Play, ArrowRight } from 'lucide-react';
 import PageHeader from '@/src/components/PageHeader';
 import { urlForImage } from '@/src/sanity/lib/image';
 
@@ -11,24 +11,31 @@ export default async function PodcastPage() {
   const podcasts = await client.fetch(allPodcastQuery);
 
   return (
-    <div className="space-y-12">
+    <div className="py-12 space-y-16">
       <PageHeader
         title="Podcast"
         description="Conversations with researchers, artists, and thinkers exploring the substance of sound."
+        className="mb-0"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {(podcasts || []).map((episode: any) => {
           const thumbnailSrc = episode.thumbnail ? urlForImage(episode.thumbnail).url() : (episode.thumbnailUrlFallback || "https://picsum.photos/seed/placeholder/800/600");
           return (
-            <a href={episode.youtubeUrl} target="_blank" rel="noopener noreferrer" key={episode._id} className="group cursor-pointer block">
-              <div className="relative aspect-video rounded-2xl overflow-hidden mb-4">
+            <a 
+              href={episode.youtubeUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              key={episode._id} 
+              className="group cursor-pointer flex flex-col bg-white dark:bg-white/5 border border-border-light dark:border-border-dark rounded-[2.5rem] overflow-hidden shadow-premium"
+            >
+              <div className="relative aspect-video">
                 <Image
                   src={thumbnailSrc}
                   alt={episode.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                   crossOrigin="anonymous"
                 />
@@ -38,9 +45,18 @@ export default async function PodcastPage() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{episode.title}</h3>
-              {episode.date && <p className="text-text-secondary text-sm mb-2">{episode.date}</p>}
-              <p className="text-text-secondary line-clamp-2">{episode.description}</p>
+              <div className="p-8 space-y-4 flex flex-col flex-1">
+                <h3 className="text-2xl font-bold tracking-tight group-hover:text-accent transition-colors leading-tight">
+                  {episode.title}
+                </h3>
+                {episode.date && <p className="text-[10px] font-bold uppercase tracking-widest text-text-secondary/50">{episode.date}</p>}
+                <p className="text-sm text-text-secondary font-light leading-relaxed line-clamp-3">
+                  {episode.description}
+                </p>
+                <div className="mt-auto pt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                   Watch Episode <ArrowRight size={14} />
+                </div>
+              </div>
             </a>
           );
         })}

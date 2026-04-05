@@ -31,21 +31,22 @@ export default function ReleasesClient({ initialReleases }: ReleasesClientProps)
     : mappedReleases.filter(drop => drop.topics.includes(activeFilter));
 
   return (
-    <div className="space-y-12">
+    <div className="py-12 space-y-16">
       <PageHeader
         title="Behind the Song"
         description="Explore the deep research, storytelling, and creative process behind every track."
+        className="mb-0"
       />
 
       <div className="flex items-center gap-3 overflow-x-auto pb-4 no-scrollbar -mx-1 px-1">
-        <Filter size={18} className="text-text-secondary shrink-0" />
+        <Filter size={18} className="text-text-secondary/40 shrink-0" />
         {topicsArray.map(topic => (
           <button
             key={topic}
             onClick={() => setActiveFilter(topic)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${activeFilter === topic
-              ? "bg-accent text-white"
-              : "bg-gray-100 dark:bg-gray-800 text-text-secondary hover:bg-gray-200 dark:hover:bg-gray-700"
+            className={`px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${activeFilter === topic
+              ? "bg-text-light text-white dark:bg-text-dark dark:text-black shadow-lg shadow-accent/10"
+              : "bg-white dark:bg-white/5 text-text-secondary border border-border-light dark:border-border-dark hover:border-accent/40"
               }`}
           >
             {topic}
@@ -54,7 +55,7 @@ export default function ReleasesClient({ initialReleases }: ReleasesClientProps)
       </div>
 
       {filteredDrops.length === 0 ? (
-        <div className="text-center py-24 space-y-8 bg-gray-50 dark:bg-[#111111] rounded-[3rem] border border-dashed border-border-light dark:border-border-dark">
+        <div className="text-center py-24 space-y-8 bg-accent/5 dark:bg-white/5 rounded-[3rem] border border-dashed border-border-light dark:border-white/10 backdrop-blur-sm">
           <div className="space-y-4 max-w-sm mx-auto">
             <h3 className="text-2xl font-bold tracking-tight">Research Underway</h3>
             <p className="text-text-secondary font-light">

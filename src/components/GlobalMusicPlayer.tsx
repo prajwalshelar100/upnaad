@@ -93,11 +93,14 @@ export default function GlobalMusicPlayer() {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: '100%', opacity: 0 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[100] bg-background-light dark:bg-background-dark flex flex-col pt-20 pb-[100px] px-6"
+                        className="fixed inset-0 z-[100] bg-background-light dark:bg-background-dark flex flex-col pt-20 pb-[100px] px-6 overflow-y-auto"
+                        style={{ 
+                            background: `radial-gradient(circle at 50% 50%, rgba(2, 132, 199, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%)` 
+                        }}
                     >
                         <button
                             onClick={toggleMaximize}
-                            className="absolute top-6 right-6 p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                            className="absolute top-6 right-6 p-2 bg-accent/10 dark:bg-accent/10 rounded-full hover:bg-accent/20 transition text-accent"
                         >
                             <Minimize2 size={24} />
                         </button>
@@ -146,7 +149,7 @@ export default function GlobalMusicPlayer() {
                                     <button onClick={prevTrack} className="text-text-secondary hover:text-accent transition">
                                         <SkipBack size={32} />
                                     </button>
-                                    <button onClick={togglePlay} className="w-20 h-20 rounded-full bg-text-light dark:bg-text-dark text-white dark:text-black flex items-center justify-center hover:scale-105 transition shadow-xl">
+                                    <button onClick={togglePlay} className="w-20 h-20 rounded-full bg-accent text-white flex items-center justify-center hover:scale-105 transition shadow-2xl shadow-accent/40">
                                         {isPlaying ? <Pause size={32} className="fill-current" /> : <Play size={32} className="fill-current ml-2" />}
                                     </button>
                                     <button onClick={nextTrack} className="text-text-secondary hover:text-accent transition">
@@ -167,8 +170,10 @@ export default function GlobalMusicPlayer() {
                                         </button>
                                     )}
                                     {currentTrack.spotifyUrl && (
-                                        <a href={currentTrack.spotifyUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full border border-border-light dark:border-border-dark hover:border-accent transition text-sm">
-                                            Listen on Spotify <ExternalLink size={14} />
+                                        <a href={currentTrack.spotifyUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-full bg-[#1DB954] text-white hover:bg-[#1ed760] transition-all font-bold text-sm shadow-lg shadow-[#1DB954]/20 group">
+                                            <Music size={16} className="fill-current" />
+                                            Play on Spotify
+                                            <ExternalLink size={14} className="opacity-50 group-hover:opacity-100 transition-opacity" />
                                         </a>
                                     )}
                                     {currentTrack.youtubeUrl && (
@@ -230,7 +235,7 @@ export default function GlobalMusicPlayer() {
                         </button>
                         <button
                             onClick={togglePlay}
-                            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-text-light dark:bg-text-dark text-white dark:text-black flex items-center justify-center hover:scale-105 transition-transform shadow-md"
+                            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg shadow-accent/30"
                             aria-label={isPlaying ? "Pause" : "Play"}
                         >
                             {isPlaying ? <Pause size={18} className="fill-current w-4 h-4 md:w-5 md:h-5" /> : <Play size={18} className="fill-current ml-1 w-4 h-4 md:w-5 md:h-5" />}

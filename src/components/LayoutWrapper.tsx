@@ -14,6 +14,7 @@ import Image from 'next/image';
 import CookieBanner from './CookieBanner';
 import WelcomeTutorial from './WelcomeTutorial';
 import GuidedAssistant from './GuidedAssistant';
+import ScrollToTop from './ScrollToTop';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -38,7 +39,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           <ThemeToggle />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="p-2 hover:bg-accent/10 dark:hover:bg-accent/10 rounded-lg transition-colors text-text-secondary hover:text-accent"
             aria-label="Toggle Menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -103,7 +104,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
           <div
             className={cn(
               "mx-auto px-4 sm:px-6 py-8 md:py-16 transition-all duration-500",
-              isReadingMode ? "max-w-none 2xl:max-w-[1400px]" : "max-w-5xl xl:max-w-6xl"
+              isReadingMode ? "max-w-none 2xl:max-w-[1400px]" : "max-w-[1400px]"
             )}
           >
             <div className="flex justify-end mb-8 md:mb-12 items-center gap-4">
@@ -131,6 +132,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <CookieBanner />
       <WelcomeTutorial />
       <GuidedAssistant />
+      <ScrollToTop />
     </div>
   );
 }

@@ -11,7 +11,8 @@ import {
   PanelRightOpen,
   BookOpen,
   Mic2,
-  Music as MusicIcon
+  Music as MusicIcon,
+  Youtube as YoutubeIcon
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { useEffect, useState } from 'react';
@@ -59,7 +60,7 @@ export default function ContextPanel() {
   return (
     <aside
       className={cn(
-        "fixed right-0 top-0 h-screen bg-background-light dark:bg-background-dark border-l border-border-light dark:border-border-dark transition-all duration-300 ease-in-out z-40",
+        "fixed right-0 top-0 h-screen bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-2xl border-l border-slate-200/60 dark:border-white/5 transition-all duration-300 ease-in-out z-40 shadow-2xl",
         isContextPanelCollapsed ? "w-[56px]" : "w-[300px]",
         "hidden lg:flex flex-col"
       )}
@@ -80,7 +81,7 @@ export default function ContextPanel() {
             {!isContextPanelCollapsed && (
               <button
                 onClick={toggleReadingMode}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-text-secondary"
+                className="p-2 hover:bg-accent/10 dark:hover:bg-accent/10 rounded-lg transition-colors text-text-secondary hover:text-accent"
                 title="Reading Mode"
               >
                 <Maximize2 size={16} />
@@ -88,7 +89,7 @@ export default function ContextPanel() {
             )}
             <button
               onClick={toggleContextPanel}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-text-secondary"
+              className="p-2 hover:bg-accent/10 dark:hover:bg-accent/10 rounded-lg transition-colors text-text-secondary hover:text-accent"
               aria-label={isContextPanelCollapsed ? "Expand Panel" : "Collapse Panel"}
             >
               {isContextPanelCollapsed ? <PanelRightOpen size={18} /> : <PanelRightClose size={18} />}
@@ -125,7 +126,7 @@ export default function ContextPanel() {
                   <Mic2 size={14} className="text-accent" />
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Latest Podcast</h3>
                 </div>
-                <Link href="/podcast" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
+                <Link href="/podcast" className="group block bg-white dark:bg-white/5 p-3 rounded-xl border border-slate-200/60 dark:border-white/5 hover:border-accent transition-all backdrop-blur-sm shadow-sm">
                   <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{podcastEpisodes[0]?.title}</p>
                   <p className="text-[10px] text-text-secondary line-clamp-1">{podcastEpisodes[0]?.description}</p>
                 </Link>
@@ -138,7 +139,7 @@ export default function ContextPanel() {
                   <MusicIcon size={14} className="text-accent" />
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">Music Track</h3>
                 </div>
-                <Link href="/music" className="group block bg-gray-50 dark:bg-gray-900 p-3 rounded-xl border border-border-light dark:border-border-dark hover:border-accent transition-all">
+                <Link href="/music" className="group block bg-white dark:bg-white/5 p-3 rounded-xl border border-slate-200/60 dark:border-white/5 hover:border-accent transition-all backdrop-blur-sm shadow-sm">
                   <p className="text-xs font-bold mb-1 group-hover:text-accent transition-colors">{musicTracks[0]?.title}</p>
                   <p className="text-[10px] text-text-secondary line-clamp-1">{musicTracks[0]?.description}</p>
                 </Link>
@@ -152,9 +153,9 @@ export default function ContextPanel() {
                   type="email" 
                   placeholder="Email Address" 
                   required 
-                  className="w-full bg-gray-50 dark:bg-gray-900 border border-border-light dark:border-border-dark px-3 py-2 rounded-lg text-xs outline-none focus:border-accent transition-colors"
+                  className="w-full bg-white dark:bg-accent/5 border border-accent/20 dark:border-white/10 px-3 py-2 rounded-lg text-xs outline-none focus:border-accent transition-colors font-medium"
                 />
-                <button type="submit" className="w-full bg-text-light dark:bg-text-dark text-white dark:text-black font-bold uppercase tracking-widest text-[10px] py-2.5 rounded-lg hover:opacity-90 transition-opacity">
+                <button type="submit" className="w-full bg-accent text-white font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-accent/90 transition-all shadow-lg shadow-accent/30">
                   Subscribe
                 </button>
               </form>
@@ -162,16 +163,41 @@ export default function ContextPanel() {
 
             <section className="pt-6 border-t border-border-light dark:border-border-dark">
               <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary mb-4">Resources</h3>
-              <div className="space-y-3">
-                <a href="#" className="flex items-center justify-between text-xs text-text-secondary hover:text-accent transition-colors group">
-                  Spotify Playlist <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex flex-col gap-3">
+                <a 
+                  href="https://open.spotify.com/user/31lle7khoqvlaqco6dsujppwadky?si=61326e719cec4eae" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-between p-3 rounded-xl bg-[#1DB954]/5 dark:bg-[#1DB954]/10 border border-[#1DB954]/20 hover:bg-[#1DB954]/10 dark:hover:bg-[#1DB954]/20 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <MusicIcon size={14} className="text-[#1DB954]" />
+                    <span className="text-[11px] font-bold">Spotify Playlist</span>
+                  </div>
+                  <ExternalLink size={12} className="text-[#1DB954] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
-                <a href="#" className="flex items-center justify-between text-xs text-text-secondary hover:text-accent transition-colors group">
-                  YouTube Channel <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                <a 
+                  href="https://www.youtube.com/channel/UCSOQzKtkWP3Wues4CA_m3Gw" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-between p-3 rounded-xl bg-[#FF0000]/5 dark:bg-[#FF0000]/10 border border-[#FF0000]/20 hover:bg-[#FF0000]/10 dark:hover:bg-[#FF0000]/20 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <YoutubeIcon size={14} className="text-[#FF0000]" />
+                    <span className="text-[11px] font-bold">YouTube Channel</span>
+                  </div>
+                  <ExternalLink size={12} className="text-[#FF0000] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
-                <a href="#" className="flex items-center justify-between text-xs text-text-secondary hover:text-accent transition-colors group">
-                  Research Archive <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                <Link 
+                  href="/archive" 
+                  className="flex items-center justify-between p-3 rounded-xl bg-accent/5 dark:bg-accent/10 border border-accent/20 hover:bg-accent/10 dark:hover:bg-accent/20 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <PanelRightClose size={14} className="text-accent" />
+                    <span className="text-[11px] font-bold">Research Archive</span>
+                  </div>
+                  <ChevronRight size={12} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
               </div>
             </section>
           </div>

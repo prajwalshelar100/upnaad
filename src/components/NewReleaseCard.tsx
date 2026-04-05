@@ -7,7 +7,7 @@ export default function NewReleaseCard({ drop }: { drop: any }) {
   return (
     <Link
       href={`/releases/${drop.slug}`}
-      className="group block bg-white dark:bg-[#111111] border border-border-light dark:border-border-dark rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+      className="group block bg-white dark:bg-white/5 border border-slate-200/60 dark:border-white/5 rounded-3xl overflow-hidden hover:shadow-premium transition-all duration-500 hover:-translate-y-1 shadow-sm backdrop-blur-sm"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image

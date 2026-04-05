@@ -14,11 +14,11 @@ interface PageHeaderProps {
 export default function PageHeader({ title, description, className }: PageHeaderProps) {
   return (
     <header className={cn("mb-16 space-y-4", className)}>
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary dark:text-text-primary">
+      <h1 className="text-6xl md:text-7xl font-bold tracking-tighter text-text-primary dark:text-text-primary">
         {title}
       </h1>
       {description && (
-        <p className="text-xl md:text-2xl text-text-secondary font-light max-w-3xl leading-relaxed">
+        <p className="text-xl text-text-secondary font-light max-w-2xl leading-relaxed">
           {description}
         </p>
       )}

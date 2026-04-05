@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send, Music as MusicIcon } from 'lucide-react';
+import PageHeader from './PageHeader';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -60,13 +61,13 @@ export default function CollaborateClient({ referenceTrack }: { referenceTrack: 
   }
 
   return (
-    <div className="max-w-2xl">
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Collaborate</h1>
-        <p className="text-xl text-text-secondary font-light">
-          We are always looking for researchers, musicians, and thinkers to join the UPNAAD ecosystem.
-        </p>
-      </header>
+    <div className="py-12 space-y-16">
+      <PageHeader 
+        title="Collaborate" 
+        description="We are always looking for researchers, musicians, and thinkers to join the UPNAAD ecosystem."
+        className="mb-0"
+      />
+      <div className="max-w-4xl">
 
       {referenceTrack && (
         <div className="mb-8 p-4 bg-gray-50 dark:bg-[#111111] rounded-2xl flex items-center gap-4 border border-border-light dark:border-border-dark">
@@ -167,6 +168,7 @@ export default function CollaborateClient({ referenceTrack }: { referenceTrack: 
           <Send size={18} className={cn("transition-transform", status !== "submitting" && "group-hover:translate-x-1 group-hover:-translate-y-1")} />
         </button>
       </form>
+      </div>
     </div>
   );
 }

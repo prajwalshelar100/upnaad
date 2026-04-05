@@ -61,35 +61,54 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
     : (latestDrop?.coverImageUrlFallback || "https://picsum.photos/seed/placeholder/1200/600");
 
   return (
-    <div className="space-y-32">
+    <div className="py-12 space-y-32">
       {/* Hero Section */}
-      <section className="max-w-4xl pt-0 md:pt-2">
+      <section className="relative pt-0 md:pt-4">
+        {/* Subtle background glow */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+        
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8"
         >
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 -mt-6">
-            <div className="relative w-24 h-24 md:w-32 md:h-32 shrink-0">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 -mt-6">
+            <motion.div 
+              initial={{ scale: 0.8, rotate: -10 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="relative w-24 h-24 md:w-40 md:h-40 shrink-0"
+            >
               <Image
                 src={logoSrc}
                 alt={`${title} Logo`}
                 fill
-                className="object-contain"
+                className="object-contain drop-shadow-2xl"
                 priority
                 crossOrigin="anonymous"
               />
-            </div>
-            <h1 className="text-6xl md:text-[100px] font-bold tracking-tighter leading-[0.85] text-text-light dark:text-text-dark">
+            </motion.div>
+            <h1 className="text-7xl md:text-[120px] font-bold tracking-tighter leading-[0.8] text-text-light dark:text-text-dark drop-shadow-sm">
               {title}
             </h1>
           </div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <p className="text-2xl md:text-4xl text-text-secondary font-light leading-tight max-w-xl" dangerouslySetInnerHTML={{ __html: subtitle.replace(/\n/g, "<br />") }} />
-            <div className="pb-2">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 pt-4">
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-2xl md:text-5xl text-text-secondary font-light leading-[1.1] max-w-2xl tracking-tight" 
+              dangerouslySetInnerHTML={{ __html: subtitle.replace(/\n/g, "<br />") }} 
+            />
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="pb-4"
+            >
               <SocialIcons />
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -101,7 +120,7 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
         >
           <Link
             href={latestDrop ? `/releases/${dropSlug}` : "#"}
-            className="bg-text-light dark:bg-text-dark text-white dark:text-black px-10 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-all shadow-xl shadow-accent/10"
+            className="bg-accent text-white px-10 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-all shadow-premium"
           >
             Stream Latest Drop <ArrowRight size={20} />
           </Link>
@@ -116,51 +135,51 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
 
       {/* Latest Drop Preview */}
       <section className="relative group">
-        <div className="absolute -inset-4 bg-gray-50 dark:bg-[#111111] rounded-[3rem] -z-10 transition-colors duration-500 group-hover:bg-gray-100 dark:group-hover:bg-[#151515]"></div>
-        <div className="grid lg:grid-cols-2 gap-16 items-center p-4">
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+        <div className="absolute -inset-8 bg-gradient-to-br from-accent/5 via-transparent to-purple-500/5 rounded-[4rem] -z-10 transition-all duration-700 group-hover:scale-[1.02] group-hover:bg-accent/10"></div>
+        <div className="grid lg:grid-cols-2 gap-16 items-center p-6">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10"
+          >
             <Image
               src={dropCoverSrc}
               alt={dropTitle}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-[2s] group-hover:scale-110"
+              className="object-cover transition-transform duration-[3s] group-hover:scale-110"
               referrerPolicy="no-referrer"
               crossOrigin="anonymous"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          </div>
-          <div className="space-y-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </motion.div>
+          <div className="space-y-10">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">Latest Research</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{dropTitle}</h2>
-              <p className="text-xl text-text-secondary font-light leading-relaxed">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Latest Research</span>
+              </div>
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] text-text-light dark:text-text-dark">{dropTitle}</h2>
+              <p className="text-xl md:text-2xl text-text-secondary font-medium leading-relaxed tracking-tight">
                 {dropThesis}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-              <Link
-                href="/music"
-                className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
-              >
-                <Play size={20} className="text-accent" />
-                <span className="text-xs font-bold uppercase tracking-widest">Listen Music</span>
-              </Link>
-              <Link
-                href={latestDrop ? `/releases/${dropSlug}` : "#"}
-                className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
-              >
-                <BookOpen size={20} className="text-accent" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Behind the Song Research</span>
-              </Link>
-              <Link
-                href="/podcast"
-                className="flex flex-col gap-4 p-5 bg-white dark:bg-black border border-border-light dark:border-border-dark rounded-2xl hover:border-accent transition-all group/card"
-              >
-                <Mic2 size={20} className="text-accent" />
-                <span className="text-xs font-bold uppercase tracking-widest">Watch Podcast</span>
-              </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4">
+              {[
+                { label: "Listen Music", icon: Play, href: "/music" },
+                { label: "Research", icon: BookOpen, href: latestDrop ? `/releases/${dropSlug}` : "#" },
+                { label: "Podcast", icon: Mic2, href: "/podcast" }
+              ].map((item, idx) => (
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="flex flex-col gap-5 p-6 bg-white/50 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 rounded-3xl hover:border-accent hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 group/card backdrop-blur-md relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl -mr-12 -mt-12 group-hover/card:bg-accent/10 transition-colors"></div>
+                  <item.icon size={22} strokeWidth={2.5} className="text-accent relative z-10" />
+                  <span className="text-[11px] font-black uppercase tracking-widest text-text-light dark:text-text-dark relative z-10 leading-none">{item.label}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -178,10 +197,10 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
               Read Research <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 md:p-12 border border-border-light dark:border-border-dark hover:border-accent transition-colors duration-500">
-            <h3 className="text-2xl font-bold mb-4">{dropTitle}</h3>
-            <p className="text-text-secondary leading-relaxed mb-6 italic border-l-2 border-accent/20 pl-4">{dropThesis}</p>
-            <p className="text-sm font-light">Explore the Sanskrit translation, deep interpretation, and scientific basis behind this sound.</p>
+          <div className="bg-slate-100/50 dark:bg-white/5 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 hover:border-accent transition-colors duration-500 backdrop-blur-sm shadow-premium">
+            <h3 className="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{dropTitle}</h3>
+            <p className="text-text-secondary leading-relaxed mb-6 font-medium border-l-4 border-accent pl-6 italic">{dropThesis}</p>
+            <p className="text-sm font-semibold text-text-secondary">Explore the Sanskrit translation, deep interpretation, and scientific basis behind this sound.</p>
           </div>
         </section>
       )}
@@ -202,14 +221,17 @@ export default function HomeClient({ homeData, latestDrop, latestBlogs = [], ser
             <Link 
               href="/topics" 
               key={i} 
-              className="p-8 bg-white dark:bg-[#111111] rounded-[2rem] border border-border-light dark:border-border-dark hover:border-accent transition-all duration-300 group"
+              className="p-8 bg-white dark:bg-white/5 rounded-[2rem] border border-slate-200/60 dark:border-white/10 hover:border-accent transition-all duration-300 group shadow-premium backdrop-blur-sm"
             >
-              <div className={`w-10 h-10 rounded-full ${topic.bg} ${topic.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <topic.icon size={20} />
+              <div className={`w-12 h-12 rounded-2xl ${topic.bg} ${topic.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                <topic.icon size={24} />
               </div>
-              <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{topic.title}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-4">{topic.description}</p>
-              <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">{topic.status}</span>
+              <h3 className="text-xl font-extrabold mb-3 group-hover:text-accent transition-colors text-text-light dark:text-text-dark">{topic.title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed mb-6 font-medium line-clamp-3">{topic.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-slate-100 dark:bg-white/10 px-2 py-1 rounded">{topic.status}</span>
+                <ArrowRight size={14} className="text-accent opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0" />
+              </div>
             </Link>
           ))}
         </div>
