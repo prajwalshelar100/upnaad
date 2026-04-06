@@ -7,6 +7,7 @@ import { releaseType } from './releaseType'
 import { blogType } from './blogType'
 import { serviceType } from './serviceType'
 import { topicType } from './topicType'
+import { storyType } from './storyType'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   homeType,
@@ -16,5 +17,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   blogType,
   serviceType,
   topicType,
+  storyType,
 ]
 

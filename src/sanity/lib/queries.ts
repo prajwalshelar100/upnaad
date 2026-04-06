@@ -30,3 +30,9 @@ export const allServicesQuery = groq`*[_type == "service"]`;
 // Query for all topics
 export const allTopicsQuery = groq`*[_type == "topic"] | order(upvotes desc, _createdAt desc)`;
 
+// Query for all stories
+export const allStoriesQuery = groq`*[_type == "story"] | order(date desc)`;
+
+// Query for story by slug
+export const storyBySlugQuery = groq`*[_type == "story" && slug.current == $slug][0]`;
+

@@ -46,6 +46,7 @@ export default function Sidebar() {
     { name: 'Home', href: '/', icon: Home },
     { name: 'Latest Drop', href: '/releases/the-rhythm-of-identity', icon: Zap },
     { name: 'Behind the Song', href: '/releases', icon: BookOpen },
+    { name: 'Stories', href: '/stories', icon: BookOpen },
     { name: 'Podcast', href: '/podcast', icon: Mic2 },
     { name: 'Music', href: '/music', icon: Music },
     { name: 'Topics', href: '/topics', icon: MessageSquare },

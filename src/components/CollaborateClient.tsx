@@ -64,7 +64,7 @@ export default function CollaborateClient({ referenceTrack }: { referenceTrack: 
     <div className="py-12 space-y-16">
       <PageHeader 
         title="Collaborate" 
-        description="We are always looking for researchers, musicians, and thinkers to join the UPNAAD ecosystem."
+        description="We are evolving into a meaning platform. Join us as a researcher, musician, storyteller, or thinker to connect emotion and awareness."
         className="mb-0"
       />
       <div className="max-w-4xl">
@@ -87,15 +87,17 @@ export default function CollaborateClient({ referenceTrack }: { referenceTrack: 
         )}
 
         <div className="space-y-3">
-          <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">Area of Interest</label>
+          <label className="text-xs font-bold uppercase tracking-[0.2em] text-text-secondary">How would you like to contribute?</label>
           <select
             name="interest"
             className="w-full bg-transparent border-b border-border-light dark:border-border-dark py-3 focus:border-accent outline-none transition-all appearance-none cursor-pointer"
-            defaultValue={referenceTrack ? "Music_Collaboration" : "Research"}
+            defaultValue={referenceTrack ? "Music_Collaboration" : "Submit_Story"}
           >
+            <option value="Submit_Story">Submit a Story (Emotion & Insight)</option>
+            <option value="Artist_Collaboration">Artist Collaboration (Visual/Audio)</option>
             <option value="Research">Suggest Research Topic</option>
             <option value="Study">Collaborate on Study</option>
-            <option value="Music_Collaboration">Music Collaboration</option>
+            <option value="Music_Collaboration">Music/Song Collaboration</option>
             <option value="Podcast">Podcast Guest Request</option>
           </select>
         </div>
