@@ -67,18 +67,27 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                   <X size={32} />
                 </button>
               </div>
-              <nav className="flex flex-col gap-8 text-3xl font-bold tracking-tight">
-                <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                <Link href="/releases" onClick={() => setIsMobileMenuOpen(false)}>Behind the Song</Link>
-                <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)}>Podcast</Link>
-                <Link href="/music" onClick={() => setIsMobileMenuOpen(false)}>Music</Link>
-                <Link href="/topics" onClick={() => setIsMobileMenuOpen(false)}>Topics</Link>
-                <Link href="/submit-topic" onClick={() => setIsMobileMenuOpen(false)}>Submit a Topic</Link>
-                <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Awareness</Link>
-                <Link href="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-                <Link href="/archive" onClick={() => setIsMobileMenuOpen(false)}>Archive</Link>
-                <Link href="/collaborate" onClick={() => setIsMobileMenuOpen(false)}>Collaborate</Link>
-                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              <nav className="flex flex-col gap-6">
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-bold tracking-tight hover:text-accent transition-colors">Home</Link>
+                <div className="space-y-1">
+                  <p className="text-2xl font-bold tracking-tight">Sound</p>
+                  <div className="flex flex-col gap-1 pl-4 border-l-2 border-accent/20">
+                    <Link href="/music" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Music & Drops</Link>
+                    <Link href="/releases" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Behind the Song</Link>
+                    <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Podcast</Link>
+                  </div>
+                </div>
+                <Link href="/stories" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-bold tracking-tight hover:text-accent transition-colors">Stories</Link>
+                <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-bold tracking-tight hover:text-accent transition-colors">Learn</Link>
+                <div className="space-y-1">
+                  <p className="text-2xl font-bold tracking-tight">Community</p>
+                  <div className="flex flex-col gap-1 pl-4 border-l-2 border-accent/20">
+                    <Link href="/topics" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Explore Topics</Link>
+                    <Link href="/stories/submit" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Share a Story</Link>
+                    <Link href="/collaborate" onClick={() => setIsMobileMenuOpen(false)} className="text-base text-text-secondary hover:text-accent transition-colors">Collaborate</Link>
+                  </div>
+                </div>
+                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-bold tracking-tight hover:text-accent transition-colors">About</Link>
               </nav>
               <div className="mt-auto pt-12 border-t border-border-light dark:border-border-dark flex items-center justify-between">
                 <ReadingModeToggle />

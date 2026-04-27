@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import PageHeader from '@/src/components/PageHeader';
 import { urlForImage } from '@/src/sanity/lib/image';
 
 export default function ArchiveClient({ initialReleases }: { initialReleases: any[] }) {
@@ -24,12 +23,7 @@ export default function ArchiveClient({ initialReleases }: { initialReleases: an
     : mappedReleases.filter(d => d.topics.includes(filter));
 
   return (
-    <div className="py-12 space-y-16">
-      <PageHeader
-        title="Archive"
-        description="A chronological record of all UPNAAD research."
-        className="mb-0"
-      />
+    <div className="space-y-6">
 
       <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar -mx-1 px-1">
         {topics.map(t => (

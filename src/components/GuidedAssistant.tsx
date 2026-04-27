@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from 'motion/react';
-import { HelpCircle, X, Music, BookOpen, PlusCircle, Users, ArrowRight } from 'lucide-react';
+import { HelpCircle, X, Music2, BookOpen, GraduationCap, Users, Headphones, Briefcase, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -10,28 +10,40 @@ export default function GuidedAssistant() {
 
   const ACTIONS = [
     { 
-      label: "Explore Music", 
-      icon: Music, 
+      label: "Explore Sound", 
+      icon: Music2, 
       href: "/music", 
-      description: "Stream our sonic translations." 
+      description: "AI music, drops & playlists."
     },
     { 
-      label: "Understand Meaning", 
+      label: "Read Stories", 
       icon: BookOpen, 
-      href: "/releases", 
-      description: "Dive into the research behind songs." 
+      href: "/stories", 
+      description: "Original narratives & reflections."
     },
     { 
-      label: "Submit a Topic", 
-      icon: PlusCircle, 
-      href: "/submit-topic", 
-      description: "Influence our next creative drop." 
+      label: "Learn Something New", 
+      icon: GraduationCap, 
+      href: "/blog", 
+      description: "Science, tech & philosophy through sound."
+    },
+    { 
+      label: "Behind the Creation", 
+      icon: Headphones, 
+      href: "/releases", 
+      description: "Research & meaning behind each song."
+    },
+    { 
+      label: "Join the Community", 
+      icon: Users, 
+      href: "/topics", 
+      description: "Submit topics, stories & ideas."
     },
     { 
       label: "Work With Us", 
-      icon: Users, 
-      href: "/collaborate", 
-      description: "Partner on research or production." 
+      icon: Briefcase, 
+      href: "/services", 
+      description: "Collaborate or commission work."
     }
   ];
 
@@ -69,7 +81,7 @@ export default function GuidedAssistant() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-2xl font-bold tracking-tight">UPNAAD Navigator</h3>
-                    <p className="text-xs text-text-secondary font-medium uppercase tracking-[0.2em] mt-1">Research in Motion</p>
+                    <p className="text-xs text-text-secondary font-medium uppercase tracking-[0.2em] mt-1">Sound · Stories · Knowledge</p>
                   </div>
                   <button 
                     onClick={() => setIsOpen(false)}
@@ -106,7 +118,7 @@ export default function GuidedAssistant() {
 
                 <div className="pt-4 border-t border-border-light/50 dark:border-border-dark/50">
                    <p className="text-[10px] text-text-secondary leading-relaxed font-light italic">
-                    "Sound is the most powerful vehicle for collective awareness." — UPNAAD Motto
+                    "Where stories, sound, and knowledge come alive." — UPNAAD
                    </p>
                 </div>
               </div>

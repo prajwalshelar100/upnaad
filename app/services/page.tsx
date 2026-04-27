@@ -3,8 +3,16 @@ import { allServicesQuery } from '@/src/sanity/lib/queries';
 import { ArrowRight, AudioLines, Brain, Sparkles, MessageCircleCode } from 'lucide-react';
 import Link from 'next/link';
 import PageHeader from '@/src/components/PageHeader';
+import PageShell from '@/src/components/PageShell';
+import { Metadata } from 'next';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Work with UPNAAD',
+  description: 'Leverage sound, consciousness, and technology for your brand, project, or personal growth.',
+};
+
 
 // Fallback data if Sanity is not yet populated
 const fallbackServices = [
@@ -81,8 +89,10 @@ export default async function ServicesPage() {
   }
 
   return (
-    <div className="space-y-24 bg-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <PageShell breadcrumbs={[{ label: 'Services' }]}>
+      <div className="space-y-24 bg-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
       <PageHeader
+        eyebrow="SERVICES · SOUND DESIGN"
         title="Work with UPNAAD"
         description="Leverage sound, consciousness, and technology for your brand, project, or personal growth."
       />
@@ -149,6 +159,7 @@ export default async function ServicesPage() {
           Book Consultation
         </Link>
       </section>
-    </div>
+      </div>
+    </PageShell>
   );
 }

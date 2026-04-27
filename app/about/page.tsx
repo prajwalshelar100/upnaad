@@ -1,4 +1,5 @@
 import PageHeader from '@/src/components/PageHeader';
+import PageShell from '@/src/components/PageShell';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Send } from 'lucide-react';
@@ -6,8 +7,14 @@ import SocialIcons from '@/src/components/SocialIcons';
 import { client } from '@/src/sanity/lib/client';
 import { latestReleaseQuery } from '@/src/sanity/lib/queries';
 import { urlForImage } from '@/src/sanity/lib/image';
+import { Metadata } from 'next';
 
-export const revalidate = 60; // revalidate every 60 seconds
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'UPNAAD is a creative ecosystem where sound, stories, and knowledge come together for curious minds.',
+};
+
+export const revalidate = 60;
 
 export default async function AboutPage() {
   const latestDrop = await client.fetch(latestReleaseQuery);
@@ -21,36 +28,46 @@ export default async function AboutPage() {
     : (latestDrop?.coverImageUrlFallback || "https://picsum.photos/seed/placeholder/1200/600");
 
   return (
-    <div className="py-10 md:py-16 space-y-20 md:space-y-32">
+    <PageShell breadcrumbs={[{ label: 'About' }]}>
+      <div className="py-2 space-y-20 md:space-y-32">
       {/* Header Section */}
       <PageHeader
+        eyebrow="ABOUT UPNAAD"
         title="About UPNAAD"
-        description="UPNAAD is a music-first creative project exploring how meaningful ideas from culture, society, and science can be translated into sound, conversations, and reflective writing."
+        description="UPNAAD is a creative ecosystem where sound, stories, and knowledge come together. We blend AI-generated music, original storytelling, deep learning articles, and community voices — for curious, reflective minds."
       />
 
       {/* The Process / Pillars */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-12">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12">
         <div className="space-y-4 flex flex-col items-start">
-          <div className="w-12 h-12 bg-accent/10 text-accent rounded-2xl flex items-center justify-center font-bold text-xl shrink-0">1</div>
-          <h3 className="font-bold text-xl tracking-tight">Idea</h3>
+          <div className="w-12 h-12 bg-accent/10 text-accent rounded-2xl flex items-center justify-center text-2xl shrink-0">🎵</div>
+          <h3 className="font-bold text-xl tracking-tight">Sound</h3>
           <p className="text-text-secondary text-base leading-relaxed">
-            Each UPNAAD release begins with a question, theme, or observation about the world—drawn from culture, society, science, or human experience.
+            AI-generated songs, educational music, and deep breakdowns of what each track means — turning listening into learning.
           </p>
         </div>
 
         <div className="space-y-4 flex flex-col items-start">
-          <div className="w-12 h-12 bg-accent/10 text-accent rounded-2xl flex items-center justify-center font-bold text-xl shrink-0">2</div>
-          <h3 className="font-bold text-xl tracking-tight">Conversation</h3>
+          <div className="w-12 h-12 bg-purple-500/10 text-purple-500 rounded-2xl flex items-center justify-center text-2xl shrink-0">📖</div>
+          <h3 className="font-bold text-xl tracking-tight">Stories</h3>
           <p className="text-text-secondary text-base leading-relaxed">
-            Ideas are explored through essays or podcast discussions that provide context, reflection, and different perspectives.
+            Original written narratives — philosophical, emotional, real-life inspired. Chicken Soup for the curious soul.
           </p>
         </div>
 
-        <div className="space-y-4 flex flex-col items-start sm:col-span-2 md:col-span-1">
-          <div className="w-12 h-12 bg-accent/10 text-accent rounded-2xl flex items-center justify-center font-bold text-xl shrink-0">3</div>
-          <h3 className="font-bold text-xl tracking-tight">Music</h3>
+        <div className="space-y-4 flex flex-col items-start">
+          <div className="w-12 h-12 bg-green-500/10 text-green-500 rounded-2xl flex items-center justify-center text-2xl shrink-0">🧠</div>
+          <h3 className="font-bold text-xl tracking-tight">Learn</h3>
           <p className="text-text-secondary text-base leading-relaxed">
-            These ideas are then interpreted through music, turning concepts and emotions into sound.
+            Complex topics — science, tech, philosophy, society — explained through stories, songs, and written breakdowns.
+          </p>
+        </div>
+
+        <div className="space-y-4 flex flex-col items-start">
+          <div className="w-12 h-12 bg-orange-500/10 text-orange-500 rounded-2xl flex items-center justify-center text-2xl shrink-0">🌍</div>
+          <h3 className="font-bold text-xl tracking-tight">Community</h3>
+          <p className="text-text-secondary text-base leading-relaxed">
+            Your voices, ideas, and experiences. Submit stories, topics, and collaborate — no login required.
           </p>
         </div>
       </section>
@@ -61,17 +78,19 @@ export default async function AboutPage() {
 
         <div className="text-lg md:text-xl text-text-secondary leading-relaxed space-y-6 md:space-y-8 font-light">
           <p>
-            UPNAAD explores the relationship between <span className="text-text-primary dark:text-text-primary font-medium italic">ideas and sound</span>.
-            Music has always been a way for societies to express questions, emotions, and collective experiences.
+            UPNAAD — <span className="text-text-primary dark:text-text-primary font-medium italic">"resonance"</span> in Sanskrit — is not a streaming platform.
+            It is a thinking space: a living digital ecosystem where sound, stories, and knowledge intersect.
           </p>
 
           <p>
-            Rather than presenting formal academic work, UPNAAD focuses on interpreting meaningful themes through artistic expression.
-            Songs, discussions, and written reflections become different ways of engaging with the same underlying idea.
+            Every song has a research question behind it. Every story has a lesson inside it.
+            Every article connects an idea to a feeling. We make content that engages you
+            <span className="text-text-primary dark:text-text-primary font-medium"> emotionally, educates you deeply, and connects you meaningfully</span>.
           </p>
 
           <p>
-            The goal is simple: to create music that carries thought, curiosity, and depth — sound that invites listeners to reflect, question, and explore.
+            Built to evolve into a full creative platform — a learning hub, a creator ecosystem, and eventually a SaaS.
+            But right now: sound, stories, and curiosity first.
           </p>
         </div>
       </section>
@@ -195,7 +214,7 @@ export default async function AboutPage() {
       <footer className="pt-16 md:pt-20 pb-10 border-t border-border-light dark:border-border-dark flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="space-y-2 text-center md:text-left">
           <p className="font-bold tracking-tighter text-xl">UPNAAD</p>
-          <p className="text-xs text-text-secondary uppercase tracking-[0.2em]">Meaning in every note. Sound with Substance.</p>
+          <p className="text-xs text-text-secondary uppercase tracking-[0.2em]">Sound · Stories · Knowledge</p>
         </div>
         <div className="flex flex-col items-center md:items-end gap-6">
           <p className="text-[10px] text-text-secondary font-mono uppercase tracking-widest text-center md:text-right">
@@ -204,6 +223,7 @@ export default async function AboutPage() {
           </p>
         </div>
       </footer>
-    </div>
+      </div>
+    </PageShell>
   );
 }

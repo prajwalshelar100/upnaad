@@ -1,6 +1,7 @@
 import { client } from '@/src/sanity/lib/client';
 import { allStoriesQuery, storyBySlugQuery } from '@/src/sanity/lib/queries';
 import StoryDetailClient from '@/src/components/StoryDetailClient';
+import PageShell from '@/src/components/PageShell';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
@@ -15,7 +16,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${story.title} | Stories & Narratives | UPNAAD`,
-    description: story.excerpt,
+    description: story.excerpt || `Read "${story.title}" on UPNAAD — stories that breathe with sound.`,
+    openGraph: {
+      title: `${story.title} | UPNAAD Stories`,
+      description: story.excerpt || '',
+      type: 'article',
+      images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: story.title,
+      description: story.excerpt || '',
+      images: ['/opengraph-image.png'],
+    },
   };
 }
 
@@ -26,9 +39,9 @@ export default async function StoryPage({ params }: Props) {
   if (!story) notFound();
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+    <PageShell breadcrumbs={[{ label: 'Stories', href: '/stories' }, { label: story.title }]}>
       <StoryDetailClient story={story} />
-    </div>
+    </PageShell>
   );
 }
 
